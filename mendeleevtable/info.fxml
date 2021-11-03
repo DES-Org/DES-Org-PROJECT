@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="468.0" style="-fx-background-color: #c9cfff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mendeleevtable.Controller">
+    <children>
+        <AnchorPane prefHeight="66.0" prefWidth="468.0" style="-fx-background-color: #ffffff;">
+            <children>
+            <Label fx:id="nameR" alignment="CENTER" layoutX="21.0" layoutY="9.0" prefHeight="47.0" prefWidth="234.0">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Button id="backToTable" layoutX="336.0" layoutY="18.0" mnemonicParsing="false" onAction="#backToTable" prefHeight="28.0" prefWidth="114.0" style="-fx-background-color: #2d009e; -fx-text-fill: #FFFFFF;" text="назад">
+               <font>
+                  <Font name="Times New Roman" size="16.0" />
+               </font>
+            </Button>
+            </children>
+        </AnchorPane>
+      <Label fx:id="logoL" alignment="CENTER" layoutX="28.0" layoutY="93.0" prefHeight="250.0" prefWidth="255.0" text="Lo">
+         <font>
+            <Font name="Times New Roman" size="96.0" />
+         </font></Label>
+      <Label fx:id="infoL" alignment="CENTER" layoutX="299.0" layoutY="190.0" prefHeight="105.0" prefWidth="90.0" />
+      <Label fx:id="massL" alignment="CENTER" layoutX="61.0" layoutY="123.0" prefHeight="30.0" prefWidth="28.0" />
+      <Label fx:id="nameL" alignment="CENTER" layoutX="89.0" layoutY="363.0" prefHeight="40.0" prefWidth="195.0" />
+      <Label fx:id="numL" alignment="CENTER" layoutX="61.0" layoutY="93.0" prefHeight="30.0" prefWidth="28.0" />
+    </children>
+</AnchorPane>
