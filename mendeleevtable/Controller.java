@@ -23,9 +23,6 @@ public class Controller extends HelloApplication{
     private Label massL;
 
     @FXML
-    private Label nameL;
-
-    @FXML
     private Label nameR;
 
     @FXML
@@ -34,14 +31,15 @@ public class Controller extends HelloApplication{
     @FXML
     public Label logoL;
 
+    @FXML
+    public Label infoL;
+
+    @FXML
+    public Button e1, e2, e3, e4, d5, e6, e7, e8;
 
     @FXML
     void initialize() {
-        assert nameR != null : "fx:id=\"nameR\" was not injected: check your FXML file 'info.fxml'.";
-        assert logoL != null : "fx:id=\"logoL\" was not injected: check your FXML file 'info.fxml'.";
-        assert massL != null : "fx:id=\"massL\" was not injected: check your FXML file 'info.fxml'.";
-        assert nameL != null : "fx:id=\"nameL\" was not injected: check your FXML file 'info.fxml'.";
-        assert numL != null : "fx:id=\"numL\" was not injected: check your FXML file 'info.fxml'.";
+
     }
 
     @FXML
@@ -84,7 +82,6 @@ public class Controller extends HelloApplication{
 
     @FXML
     protected void goToElemInfo(ActionEvent event) throws Exception  {
-        String path = "info.fxml";
         String logo = "", name = "", mass = "", info = "", num = "";
         Button btn = (Button) event.getSource();
         File file = new File(Objects.requireNonNull(getClass().getResource(btn.getId() + ".txt")).getFile());
@@ -96,11 +93,13 @@ public class Controller extends HelloApplication{
             num = btn.getId();
         }catch (Exception ignored) {}
 
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(path));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("info.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Element Info");
         stage.setResizable(false);
-        stage.setScene(new Scene(loader.load(), 468, 480));
+        Parent root = (Parent) loader.load();
+        Controller controller = loader.getController();
+        stage.setScene(new Scene(root));
         stage.show();
         System.out.println(logo);
         System.out.println(name);
@@ -108,12 +107,11 @@ public class Controller extends HelloApplication{
         System.out.println(info);
         System.out.println(num);
         System.out.println();
-        /*
-        logoL.setText(logo);
-        nameR.setText(name);
-        massL.setText(mass);
-        numL.setText(num);
-        infoL.setText(info);*/
+        controller.logoL.setText(logo);
+        controller.nameR.setText(name);
+        controller.massL.setText(mass);
+        controller.infoL.setText(info);
+        controller.numL.setText(num);
     }
 
     @FXML
