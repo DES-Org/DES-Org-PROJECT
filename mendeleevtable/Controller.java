@@ -34,8 +34,8 @@ public class Controller extends HelloApplication{
     @FXML
     public Label infoL;
 
-    @FXML
-    public Button e1, e2, e3, e4, d5, e6, e7, e8;
+   /* @FXML
+    public Label logoG;*/
 
     @FXML
     void initialize() {
@@ -62,22 +62,22 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    protected void toGameButton(ActionEvent event){
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-        String path = "game.fxml";
-        try {
-            root = loader.load(getClass().getResourceAsStream(path));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    protected void toGameButton() throws IOException {
+        String logo = "", name = "";
+        File file = new File(Objects.requireNonNull(getClass().getResource("1.txt")).getFile());
+        try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
+            logo = br.readLine();
+            name = br.readLine();
+        }catch (Exception ignored) {}
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("game.fxml"));
         Stage stage = new Stage();
-        stage.setTitle("Game");
+        stage.setTitle("Element Info");
         stage.setResizable(false);
-        assert root != null;
+        Parent root = loader.load();
         stage.setScene(new Scene(root));
         stage.show();
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+        System.out.println(logo);
+        System.out.println(name);
     }
 
     @FXML
@@ -97,7 +97,7 @@ public class Controller extends HelloApplication{
         Stage stage = new Stage();
         stage.setTitle("Element Info");
         stage.setResizable(false);
-        Parent root = (Parent) loader.load();
+        Parent root = loader.load();
         Controller controller = loader.getController();
         stage.setScene(new Scene(root));
         stage.show();
