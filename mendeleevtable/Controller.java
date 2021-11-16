@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Random;
 
 public class Controller extends HelloApplication{
 
@@ -240,6 +241,23 @@ public class Controller extends HelloApplication{
         gameEnd();
     }
 
+    private static int[] shuffleArray() {   // тут перетасовачка массива, рабочая, можно поднастроить, если надо, сделаю
+        final int NUMBER_OF_ELEMENTS = 118;
+        int[] arr = new int[NUMBER_OF_ELEMENTS];
+        for (int i = 0; i < NUMBER_OF_ELEMENTS; i++) {
+            arr[i] = i + 1;
+        }
+        Random rnd = new Random();
+        int n, current;
+        for (int i = NUMBER_OF_ELEMENTS - 1; i >= 0; i--) {
+            n = rnd.nextInt(i + 1);
+            current = arr[n];            //тут три строки - свап по сути, можно сделать отдельной функцией, если хочешь, хотя от этого покрытие вряд ли изменится, чисто лишних строки 2
+            arr[n] = arr[i];
+            arr[i] = current;
+        }
+        return arr;
+    }
+
     private static String deleteAllSpaces (String line){
         char[] arrayOfLetters = line.toCharArray();
         StringBuilder answer = new StringBuilder();
@@ -269,9 +287,8 @@ public class Controller extends HelloApplication{
         return answer.toString();
     }
 
-
-
     private static void checkAnswerFunc(String rightAnswer, String usersAnswer) throws InterruptedException {
+        shuffleArray();
         if ((rightAnswer.trim()).equalsIgnoreCase(usersAnswer.trim())){
             RightAnswer();
         }else{
