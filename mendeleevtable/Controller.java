@@ -240,7 +240,16 @@ public class Controller extends HelloApplication{
         gameEnd();
     }
 
-    
+    private static String deleteAllSpaces (String line){
+        char[] arrayOfLetters = line.toCharArray();
+        StringBuilder answer = new StringBuilder();
+        for (char arrayOfLetter : arrayOfLetters) {
+            if (arrayOfLetter != ' ') {
+                answer.append(arrayOfLetter);
+            }
+        }
+        return answer.toString();
+    }
 
     private static String makeStringLower(String line){
         char[] arrayOfLetters = line.toCharArray();
@@ -257,7 +266,6 @@ public class Controller extends HelloApplication{
         for (char arrayOfLetter : arrayOfLetters) {
             answer.append(arrayOfLetter);
         }
-        System.out.println(answer);
         return answer.toString();
     }
 
