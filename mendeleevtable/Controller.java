@@ -240,11 +240,28 @@ public class Controller extends HelloApplication{
         gameEnd();
     }
 
+    
+
     private static String makeStringLower(String line){
-        return line.toLowerCase();
+        char[] arrayOfLetters = line.toCharArray();
+        for (int i = 0; i < arrayOfLetters.length; i++) {
+            if ((arrayOfLetters[i] >= 1040) && (arrayOfLetters[i] < 1072)){
+                arrayOfLetters[i] = (char) ((int) arrayOfLetters[i] + 32);
+            } else {
+                if (arrayOfLetters[i] == 1025){
+                    arrayOfLetters[i] = (char) ((int) arrayOfLetters[i] + 80);
+                }
+            }
+        }
+        StringBuilder answer = new StringBuilder();
+        for (char arrayOfLetter : arrayOfLetters) {
+            answer.append(arrayOfLetter);
+        }
+        System.out.println(answer);
+        return answer.toString();
     }
 
-    
+
 
     private static void checkAnswerFunc(String rightAnswer, String usersAnswer) throws InterruptedException {
         if ((rightAnswer.trim()).equalsIgnoreCase(usersAnswer.trim())){
@@ -289,3 +306,4 @@ public class Controller extends HelloApplication{
         }
     }
 }
+
