@@ -224,6 +224,7 @@ public class Controller extends HelloApplication{
         setGameElemsVisible(false);
         clearAll();
         control.checkAnswerButton.setText("Начать игру");
+        control.health.setText("Здоровье");
     }
 
     private static void gameOver(){
@@ -343,14 +344,35 @@ public class Controller extends HelloApplication{
             String rAnswer = makeStringLower(deleteAllSpaces(takeRightAnswer(GAME_ARR[GAME_NUM])));
             String uAnswer = makeStringLower(deleteAllSpaces(usersAnswer.getText()));
             if(usersAnswer.getText().equals("cheat::answer")){
-                uAnswer = rAnswer;
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Чит!");
-                alert.setHeaderText("Чит код активирован!");
-                alert.setContentText("Правильный ответ: " + rAnswer);
-                alert.showAndWait();
+                control.usersAnswer.setText(rAnswer);
+            }else if (usersAnswer.getText().equals("cheat::win")){
+                GAME_POINTS = 118;
+                gameWin();
+                control.usersAnswer.setText("");
+            } else if (usersAnswer.getText().equals("cheat::gameover")){
+                gameOver();
+                control.usersAnswer.setText("");
+            } else if (usersAnswer.getText().equals("cheat::pluspoints")){
+                GAME_POINTS += 5;
+                control.points.setText(String.valueOf(GAME_POINTS));
+                control.usersAnswer.setText("");
+            } else if (usersAnswer.getText().equals("cheat::heal")){
+                GAME_HEALTH = 3;
+                control.firstHeart.setVisible(true);
+                control.secondHeart.setVisible(true);
+                control.thirdHeart.setVisible(true);
+                control.usersAnswer.setText("");
+            }else if(usersAnswer.getText().equals("cheat::godmode")){
+                GAME_HEALTH = 5000;
+                control.firstHeart.setVisible(false);
+                control.secondHeart.setVisible(false);
+                control.thirdHeart.setVisible(false);
+                control.health.setText("Бессмертен");
+                control.usersAnswer.setText("");
+
+            } else {
+                checkAnswerFunc(rAnswer, uAnswer);
             }
-            checkAnswerFunc(rAnswer, uAnswer);
         }
     }
 }
