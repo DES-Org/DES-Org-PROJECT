@@ -109,7 +109,7 @@ public class Controller extends HelloApplication{
         if (!ELEMENT_INFO_WINDOW_OPEN)
             ELEMENT_INFO_WINDOW_OPEN = true;
         else{
-          //  ((Node)(ev.getSource())).getScene().getWindow().hide();
+            //  ((Node)(ev.getSource())).getScene().getWindow().hide();
         }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("info.fxml"));
@@ -173,7 +173,6 @@ public class Controller extends HelloApplication{
     public Label points, health, logoG, nameID;
     public Button checkAnswerButton;
     public TextField usersAnswer;
-    public Label colorRight, colorWrong;
     public ImageView firstHeart;
     public ImageView secondHeart;
     public ImageView thirdHeart;
@@ -207,15 +206,11 @@ public class Controller extends HelloApplication{
     }
 
     private static void RightAnswer() {
-        control.colorRight.setVisible(true);
-        control.colorWrong.setVisible(false);
         GAME_POINTS++;
         control.points.setText(String.valueOf(GAME_POINTS));
     }
 
     private static void WrongAnswer() {
-        control.colorWrong.setVisible(true);
-        control.colorRight.setVisible(false);
         GAME_HEALTH--;
     }
 
@@ -226,8 +221,6 @@ public class Controller extends HelloApplication{
         control.points.setText("0");
         control.logoG.setText("");
         control.usersAnswer.setText("");
-        control.colorRight.setVisible(false);
-        control.colorWrong.setVisible(false);
     }
 
     private static void gameEnd(){
@@ -341,7 +334,7 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    protected void checkAnswer() throws InterruptedException {
+    protected void checkAnswer() {
         if (GAME_NUM == 0){
             setGameElemsVisible(true);
             control.checkAnswerButton.setText("Проверить");
