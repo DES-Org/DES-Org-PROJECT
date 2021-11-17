@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -164,10 +165,13 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    public Label points, health, logoG, hearts, nameID;
+    public Label points, health, logoG, nameID;
     public Button checkAnswerButton;
     public TextField usersAnswer;
     public Label colorRight, colorWrong;
+    public ImageView firstHeart;
+    public ImageView secondHeart;
+    public ImageView thirdHeart;
 
 
     public static byte GAME_NUM = 0;
@@ -209,14 +213,12 @@ public class Controller extends HelloApplication{
         control.colorWrong.setVisible(true);
         control.colorRight.setVisible(false);
         GAME_HEALTH--;
-        control.hearts.setText(String.valueOf(GAME_HEALTH));
     }
 
     private static void clearAll(){
         GAME_HEALTH = 3;
         GAME_POINTS = 0;
         GAME_NUM = 0;
-        control.hearts.setText("3");
         control.points.setText("0");
         control.logoG.setText("");
         control.usersAnswer.setText("");
@@ -308,7 +310,14 @@ public class Controller extends HelloApplication{
             WrongAnswer();
         }
         GAME_NUM++;
+        if (GAME_HEALTH == 2){
+            control.firstHeart.setVisible(false);
+        }
+        if (GAME_HEALTH == 1){
+            control.secondHeart.setVisible(false);
+        }
         if (GAME_HEALTH == 0){
+            control.thirdHeart.setVisible(false);
             gameOver();
         }else if (GAME_NUM == 119){
             gameWin();
@@ -322,8 +331,10 @@ public class Controller extends HelloApplication{
         control.usersAnswer.setVisible(way);
         control.points.setVisible(way);
         control.nameID.setVisible(way);
-        control.hearts.setVisible(way);
         control.health.setVisible(way);
+        control.firstHeart.setVisible(way);
+        control.secondHeart.setVisible(way);
+        control.thirdHeart.setVisible(way);
     }
 
     @FXML
