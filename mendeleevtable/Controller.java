@@ -16,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
@@ -84,6 +85,8 @@ public class Controller extends HelloApplication{
         control = loader.getController();
     }
 
+    private static boolean ELEMENT_INFO_WINDOW_OPEN = false;
+    private static ActionEvent ev;
     @FXML
     protected void goToElemInfo(ActionEvent event) throws Exception  {
         String logo = "", name = "", mass = "", info = "", num = "";
@@ -96,6 +99,12 @@ public class Controller extends HelloApplication{
             info = br.readLine();
             num = btn.getId();
         }catch (Exception ignored) {}
+
+        if (!ELEMENT_INFO_WINDOW_OPEN)
+            ELEMENT_INFO_WINDOW_OPEN = true;
+        else{
+          //  ((Node)(ev.getSource())).getScene().getWindow().hide();
+        }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("info.fxml"));
         Stage stage = new Stage();
@@ -164,6 +173,7 @@ public class Controller extends HelloApplication{
     public static byte GAME_NUM = 0;
     public static int GAME_POINTS = 0;
     public static int GAME_HEALTH = 3;
+    public static int[] GAME_ARR = new int[118];
 
     private static String takeRightAnswer(int number){
         String name = "";
@@ -197,7 +207,7 @@ public class Controller extends HelloApplication{
 
     private static void WrongAnswer() throws InterruptedException {
         control.colorWrong.setVisible(true);
-        control.colorWrong.setVisible(false);
+        control.colorRight.setVisible(false);
         GAME_HEALTH--;
         control.hearts.setText(String.valueOf(GAME_HEALTH));
     }
@@ -210,11 +220,14 @@ public class Controller extends HelloApplication{
         control.points.setText("0");
         control.logoG.setText("");
         control.usersAnswer.setText("");
+        control.colorRight.setVisible(false);
+        control.colorWrong.setVisible(false);
     }
 
     private static void gameEnd(){
         setGameElemsVisible(false);
         clearAll();
+        control.checkAnswerButton.setText("Начать игру");
     }
 
     private static void gameOver(){
@@ -276,7 +289,7 @@ public class Controller extends HelloApplication{
                 arrayOfLetters[i] = (char) ((int) arrayOfLetters[i] + 32);
             } else {
                 if (arrayOfLetters[i] == 1025){
-                    arrayOfLetters[i] = (char) ((int) arrayOfLetters[i] + 80);
+                    arrayOfLetters[i] = (char) ((int) arrayOfLetters[i] + 80); //Ё
                 }
             }
         }
@@ -300,7 +313,7 @@ public class Controller extends HelloApplication{
         }else if (GAME_NUM == 119){
             gameWin();
         } else {
-            generateInfo(GAME_NUM);
+            generateInfo(GAME_ARR[GAME_NUM]);
         }
         control.usersAnswer.setText("");
     }
@@ -319,13 +332,13 @@ public class Controller extends HelloApplication{
             setGameElemsVisible(true);
             control.checkAnswerButton.setText("Проверить");
             clearAll();
+            GAME_ARR = shuffleArray();
             GAME_NUM = 1;
-            generateInfo(1);
+            generateInfo(GAME_ARR[GAME_NUM - 1]);
         }else{
-            String rAnswer = takeRightAnswer(GAME_NUM);
-            String uAnswer = usersAnswer.getText();
+            String rAnswer = makeStringLower(deleteAllSpaces(takeRightAnswer(GAME_ARR[GAME_NUM])));
+            String uAnswer = makeStringLower(deleteAllSpaces(usersAnswer.getText()));
             checkAnswerFunc(rAnswer, uAnswer);
-            System.out.println(rAnswer + "    " + uAnswer);
             if (rAnswer.equals(uAnswer))
                 System.out.println("correct");
         }
