@@ -353,8 +353,14 @@ public class Controller extends HelloApplication{
             String rAnswer = makeStringLower(deleteAllSpaces(takeRightAnswer(GAME_ARR[GAME_NUM])));
             String uAnswer = makeStringLower(deleteAllSpaces(usersAnswer.getText()));
             checkAnswerFunc(rAnswer, uAnswer);
-            if (rAnswer.equals(uAnswer))
+            if (rAnswer.equals(uAnswer)){
+                control.nameID.setTextFill(Color.GREEN);
+                control.points.setTextFill(Color.GREEN);
                 System.out.println("correct");
+            } else {
+                control.nameID.setTextFill(Color.RED);
+                control.points.setTextFill(Color.RED);
+            }
         }
     }
 }
