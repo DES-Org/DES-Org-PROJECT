@@ -92,7 +92,6 @@ public class Controller extends HelloApplication{
     }
 
     private static boolean ELEMENT_INFO_WINDOW_OPEN = false;
-    private static ActionEvent ev;
     @FXML
     protected void goToElemInfo(ActionEvent event) throws Exception  {
         String logo = "", name = "", mass = "", info = "", num = "";
@@ -105,12 +104,6 @@ public class Controller extends HelloApplication{
             info = br.readLine();
             num = btn.getId();
         }catch (Exception ignored) {}
-
-        if (!ELEMENT_INFO_WINDOW_OPEN)
-            ELEMENT_INFO_WINDOW_OPEN = true;
-        else{
-            //  ((Node)(ev.getSource())).getScene().getWindow().hide();
-        }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("info.fxml"));
         Stage stage = new Stage();
@@ -208,10 +201,14 @@ public class Controller extends HelloApplication{
     private static void RightAnswer() {
         GAME_POINTS++;
         control.points.setText(String.valueOf(GAME_POINTS));
+        control.nameID.setTextFill(Color.GREEN);
+        control.points.setTextFill(Color.GREEN);
     }
 
     private static void WrongAnswer() {
         GAME_HEALTH--;
+        control.nameID.setTextFill(Color.RED);
+        control.points.setTextFill(Color.RED);
     }
 
     private static void clearAll(){
@@ -345,15 +342,15 @@ public class Controller extends HelloApplication{
         }else{
             String rAnswer = makeStringLower(deleteAllSpaces(takeRightAnswer(GAME_ARR[GAME_NUM])));
             String uAnswer = makeStringLower(deleteAllSpaces(usersAnswer.getText()));
-            checkAnswerFunc(rAnswer, uAnswer);
-            if (rAnswer.equals(uAnswer)){
-                control.nameID.setTextFill(Color.GREEN);
-                control.points.setTextFill(Color.GREEN);
-                System.out.println("correct");
-            } else {
-                control.nameID.setTextFill(Color.RED);
-                control.points.setTextFill(Color.RED);
+            if(usersAnswer.getText().equals("cheat::answer")){
+                uAnswer = rAnswer;
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Чит!");
+                alert.setHeaderText("Чит код активирован!");
+                alert.setContentText("Правильный ответ: " + rAnswer);
+                alert.showAndWait();
             }
+            checkAnswerFunc(rAnswer, uAnswer);
         }
     }
 }
