@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -20,6 +22,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
+
+
 
 public class Controller extends HelloApplication{
 
@@ -46,6 +50,7 @@ public class Controller extends HelloApplication{
 
     @FXML
     protected void toTableButton(ActionEvent event)  {
+
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
         String path = "table.fxml";
@@ -173,7 +178,6 @@ public class Controller extends HelloApplication{
     public ImageView secondHeart;
     public ImageView thirdHeart;
 
-
     public static byte GAME_NUM = 0;
     public static int GAME_POINTS = 0;
     public static int GAME_HEALTH = 3;
@@ -202,14 +206,14 @@ public class Controller extends HelloApplication{
         control.logoG.setText(takeLogo(number));
     }
 
-    private static void RightAnswer() throws InterruptedException {
+    private static void RightAnswer() {
         control.colorRight.setVisible(true);
         control.colorWrong.setVisible(false);
         GAME_POINTS++;
         control.points.setText(String.valueOf(GAME_POINTS));
     }
 
-    private static void WrongAnswer() throws InterruptedException {
+    private static void WrongAnswer() {
         control.colorWrong.setVisible(true);
         control.colorRight.setVisible(false);
         GAME_HEALTH--;
@@ -302,8 +306,7 @@ public class Controller extends HelloApplication{
         return answer.toString();
     }
 
-    private static void checkAnswerFunc(String rightAnswer, String usersAnswer) throws InterruptedException {
-        shuffleArray();
+    private static void checkAnswerFunc(String rightAnswer, String usersAnswer) {
         if ((rightAnswer.trim()).equalsIgnoreCase(usersAnswer.trim())){
             RightAnswer();
         }else{
