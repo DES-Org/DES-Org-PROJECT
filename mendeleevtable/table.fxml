@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1019.0" style="-fx-background-color: #E6E6FA;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mendeleevtable.Controller">
+  <children>
+    <AnchorPane layoutX="-6.0" prefHeight="56.0" prefWidth="1025.0" style="-fx-background-color: #FFB6C1;">
+      <children>
+        <Text layoutX="278.0" layoutY="31.0" style="-fx-font-family:monospace; -fx-font-size:22.0 " text="Периодическая таблица элементов" textAlignment="CENTER">
+               <font>
+                  <Font name="Monospaced Regular" size="13.0" />
+               </font></Text>
+
+        <Button id="backToMain" alignment="BOTTOM_CENTER" layoutX="872.0" layoutY="12.0" mnemonicParsing="false" onAction="#backToMain" prefHeight="28.0" prefWidth="114.0" style="-fx-background-color: #FF69B4; -fx-text-fill: #FFFFFF;" text="Назад">
+          <font>
+            <Font name="Monospaced Bold" size="14.0" />
+          </font>
+        </Button>
+      </children>
+    </AnchorPane>
+    <Button id="1" alignment="CENTER" layoutX="22.0" layoutY="105.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: LawnGreen;" text="H">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="3" alignment="CENTER" layoutX="22.0" layoutY="156.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Tomato;" text="Li">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="11" alignment="CENTER" layoutX="22.0" layoutY="204.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Tomato;" text="Na">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="19" alignment="CENTER" layoutX="22.0" layoutY="252.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Tomato;" text="K">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="37" alignment="CENTER" layoutX="22.0" layoutY="303.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Tomato;" text="Rb">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="55" alignment="CENTER" layoutX="22.0" layoutY="357.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Tomato;" text="Cs">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="87" alignment="CENTER" layoutX="22.0" layoutY="406.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Tomato;" text="Fr">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="4" alignment="CENTER" layoutX="73.0" layoutY="156.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Orange;" text="Be">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="12" alignment="CENTER" layoutX="73.0" layoutY="204.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Orange;" text="Mg">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="20" alignment="CENTER" layoutX="73.0" layoutY="252.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Orange;" text="Ca">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="38" alignment="CENTER" layoutX="73.0" layoutY="303.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Orange;" text="Sr">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="56" alignment="CENTER" layoutX="73.0" layoutY="357.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Orange;" text="Ba">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="88" alignment="CENTER" layoutX="73.0" layoutY="406.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Orange;" text="Ra">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="21" alignment="CENTER" layoutX="159.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Sc">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    
+    <Button id="39" alignment="CENTER" layoutX="159.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Y">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="22" alignment="CENTER" layoutX="212.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Ti">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="40" alignment="CENTER" layoutX="212.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Zn">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="72" alignment="CENTER" layoutX="212.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Hf">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="104" alignment="CENTER" layoutX="212.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Rf">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="23" alignment="CENTER" layoutX="266.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="V">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="41" alignment="CENTER" layoutX="266.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Nb">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="73" alignment="CENTER" layoutX="266.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Ta">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="105" alignment="CENTER" layoutX="266.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Db">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="24" alignment="CENTER" layoutX="319.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Cr">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="42" alignment="CENTER" layoutX="319.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Mo">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="74" alignment="CENTER" layoutX="319.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="W">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="106" alignment="CENTER" layoutX="319.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Sg">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="25" alignment="CENTER" layoutX="373.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Mn">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="43" alignment="CENTER" layoutX="373.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Tc">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="75" alignment="CENTER" layoutX="373.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Re">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="107" alignment="CENTER" layoutX="373.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Bh">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="26" alignment="CENTER" layoutX="426.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Fe">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="44" alignment="CENTER" layoutX="426.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Ru">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+
+    <Button id="76" alignment="CENTER" layoutX="426.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Os">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="108" alignment="CENTER" layoutX="426.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Hs">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="27" alignment="CENTER" layoutX="481.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Co">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="45" alignment="CENTER" layoutX="481.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Rh">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="77" alignment="CENTER" layoutX="481.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Ir">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="109" alignment="CENTER" layoutX="481.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Mt">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="28" alignment="CENTER" layoutX="534.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Ni">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="46" alignment="CENTER" layoutX="534.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Pd">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="78" alignment="CENTER" layoutX="534.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Pt">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="110" alignment="CENTER" layoutX="534.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Ds">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="29" alignment="CENTER" layoutX="588.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Cu">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="47" alignment="CENTER" layoutX="588.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Ag">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="79" alignment="CENTER" layoutX="588.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Au">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="111" alignment="CENTER" layoutX="588.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Rg">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="30" alignment="CENTER" layoutX="641.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Zn">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="48" alignment="CENTER" layoutX="641.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Cd">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="80" alignment="CENTER" layoutX="641.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Hg">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="112" alignment="CENTER" layoutX="641.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: PowderBlue;" text="Cn">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="5" alignment="CENTER" layoutX="696.0" layoutY="151.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: ForestGreen;" text="B">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="31" alignment="CENTER" layoutX="696.0" layoutY="247.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: CornflowerBlue;" text="Ga">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="49" alignment="CENTER" layoutX="696.0" layoutY="298.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: CornflowerBlue;" text="In">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="81" alignment="CENTER" layoutX="696.0" layoutY="352.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: CornflowerBlue;" text="Tl">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="113" alignment="CENTER" layoutX="696.0" layoutY="401.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: CornflowerBlue;" text="Nh">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="6" alignment="CENTER" layoutX="749.0" layoutY="151.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: LawnGreen;" text="C">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="32" alignment="CENTER" layoutX="749.0" layoutY="247.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: ForestGreen;" text="Ge">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="50" alignment="CENTER" layoutX="749.0" layoutY="298.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: CornflowerBlue;" text="Sn">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="82" alignment="CENTER" layoutX="749.0" layoutY="352.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: CornflowerBlue;" text="Pb">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="114" alignment="CENTER" layoutX="749.0" layoutY="401.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: CornflowerBlue;" text="Fl">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="7" alignment="CENTER" layoutX="801.0" layoutY="151.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: LawnGreen;" text="N">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="83" alignment="CENTER" layoutX="801.0" layoutY="352.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: CornflowerBlue;" text="Bi">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+
+    <Button id="13" alignment="CENTER" layoutX="696.0" layoutY="199.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: CornflowerBlue;" text="Al">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="14" alignment="CENTER" layoutX="749.0" layoutY="199.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: ForestGreen;" text="Si">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="15" alignment="CENTER" layoutX="801.0" layoutY="199.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: LawnGreen;" text="P">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="33" alignment="CENTER" layoutX="801.0" layoutY="247.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: ForestGreen;" text="As">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="51" alignment="CENTER" layoutX="801.0" layoutY="298.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: ForestGreen;" text="Sb">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="115" alignment="CENTER" layoutX="801.0" layoutY="401.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: CornflowerBlue;" text="Mc">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="8" alignment="CENTER" layoutX="854.0" layoutY="151.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: LawnGreen;" text="O">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="16" alignment="CENTER" layoutX="854.0" layoutY="199.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: LawnGreen;" text="S">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+
+    <Button id="34" alignment="CENTER" layoutX="854.0" layoutY="247.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: LawnGreen;" text="Se">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="52" alignment="CENTER" layoutX="854.0" layoutY="298.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: ForestGreen;" text="Te">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="84" alignment="CENTER" layoutX="854.0" layoutY="352.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: CornflowerBlue;" text="Po">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="116" alignment="CENTER" layoutX="854.0" layoutY="401.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: CornflowerBlue;" text="Lv">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="9" alignment="CENTER" layoutX="907.0" layoutY="152.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Khaki;" text="F">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="17" alignment="CENTER" layoutX="907.0" layoutY="200.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Khaki;" text="Cl">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="35" alignment="CENTER" layoutX="907.0" layoutY="248.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Khaki;" text="Br">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="53" alignment="CENTER" layoutX="907.0" layoutY="299.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Khaki;" text="I">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="85" alignment="CENTER" layoutX="907.0" layoutY="353.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Khaki;" text="At">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="117" alignment="CENTER" layoutX="907.0" layoutY="402.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Khaki;" text="Ts">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="10" alignment="CENTER" layoutX="960.0" layoutY="152.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Salmon;" text="Ne">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="18" alignment="CENTER" layoutX="960.0" layoutY="200.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Salmon;" text="Ar">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="36" alignment="CENTER" layoutX="960.0" layoutY="248.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Salmon;" text="Kr">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="54" alignment="CENTER" layoutX="960.0" layoutY="299.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Salmon;" text="Xe">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="86" alignment="CENTER" layoutX="960.0" layoutY="353.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Salmon;" text="Rn">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="118" alignment="CENTER" layoutX="960.0" layoutY="402.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Salmon;" text="Og">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="2" alignment="CENTER" layoutX="960.0" layoutY="105.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: Salmon;" text="He">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="57" alignment="CENTER" layoutX="159.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: SkyBlue;" text="La">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="89" alignment="CENTER" layoutX="159.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: DodgerBlue;" text="Ac">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+
+    <Button id="58" alignment="CENTER" layoutX="212.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: SkyBlue;" text="Ce">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="90" alignment="CENTER" layoutX="212.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: DodgerBlue;" text="Th">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="59" alignment="CENTER" layoutX="266.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: SkyBlue;" text="Pr">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="91" alignment="CENTER" layoutX="266.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: DodgerBlue;" text="Pa">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="60" alignment="CENTER" layoutX="319.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: SkyBlue;" text="Nd">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="92" alignment="CENTER" layoutX="319.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: DodgerBlue;" text="U">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="61" alignment="CENTER" layoutX="373.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: SkyBlue;" text="Pm">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="93" alignment="CENTER" layoutX="373.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: DodgerBlue;" text="Np">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="62" alignment="CENTER" layoutX="426.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: SkyBlue;" text="Sm">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="94" alignment="CENTER" layoutX="426.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: DodgerBlue;" text="Pu">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="63" alignment="CENTER" layoutX="481.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: SkyBlue;" text="Eu">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="95" alignment="CENTER" layoutX="481.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: DodgerBlue;" text="Am">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="64" alignment="CENTER" layoutX="534.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: SkyBlue;" text="Gd">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="96" alignment="CENTER" layoutX="534.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: DodgerBlue;" text="Cm">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="65" alignment="CENTER" layoutX="588.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: SkyBlue;" text="Tb">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="97" alignment="CENTER" layoutX="588.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: DodgerBlue;" text="Bk">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="66" alignment="CENTER" layoutX="641.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: SkyBlue;" text="Dy">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="98" alignment="CENTER" layoutX="641.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: DodgerBlue;" text="Cf">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="67" alignment="CENTER" layoutX="696.0" layoutY="474.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: SkyBlue;" text="Ho">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+
+
+    <Button id="99" alignment="CENTER" layoutX="696.0" layoutY="523.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: DodgerBlue;" text="Es">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="68" alignment="CENTER" layoutX="749.0" layoutY="474.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: SkyBlue;" text="Er">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="100" alignment="CENTER" layoutX="749.0" layoutY="523.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: DodgerBlue;" text="Fm">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="69" alignment="CENTER" layoutX="801.0" layoutY="474.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: SkyBlue;" text="Tm">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="101" alignment="CENTER" layoutX="801.0" layoutY="523.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: DodgerBlue;" text="Md">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="70" alignment="CENTER" layoutX="854.0" layoutY="474.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: SkyBlue;" text="Yb">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="102" alignment="CENTER" layoutX="854.0" layoutY="523.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: DodgerBlue;" text="No">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="71" alignment="CENTER" layoutX="906.0" layoutY="474.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: SkyBlue;" text="Lu">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+    <Button id="103" alignment="CENTER" layoutX="906.0" layoutY="523.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: DodgerBlue;" text="Lr">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></Button>
+      <TextField layoutX="126.0" layoutY="357.0" prefHeight="38.0" prefWidth="75.0" style="-fx-background-color: SkyBlue;" text=" La-Lu ">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></TextField>
+      <TextField layoutX="126.0" layoutY="406.0" prefHeight="38.0" prefWidth="75.0" style="-fx-background-color: DodgerBlue;" text=" Ac-Lr">
+         <font>
+            <Font name="Monospaced Bold" size="13.0" />
+         </font></TextField>
+      <TextField layoutX="30.0" layoutY="78.0" prefHeight="26.0" prefWidth="28.0" style="-fx-background-color: none;" text="IA" />
+    <TextField layoutX="81.0" layoutY="130.0" prefHeight="26.0" prefWidth="28.0" style="-fx-background-color: none;" text="IIA" />
+    <TextField layoutX="700.0" layoutY="124.0" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: none;" text="IIIA" />
+    <TextField layoutX="649.0" layoutY="225.0" prefHeight="26.0" prefWidth="28.0" style="-fx-background-color: none;" text="IIB" />
+    <TextField layoutX="596.0" layoutY="224.0" prefHeight="26.0" prefWidth="28.0" style="-fx-background-color: none;" text="IB" />
+    <TextField layoutX="481.0" layoutY="222.0" prefHeight="26.0" prefWidth="43.0" style="-fx-background-color: none;" text="VIIIB" />
+    <TextField layoutX="377.0" layoutY="224.0" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: none;" text="VIIB" />
+    <TextField layoutX="323.0" layoutY="225.0" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: none;" text="VIB" />
+    <TextField layoutX="274.0" layoutY="224.0" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: none;" text="VB" />
+    <TextField layoutX="216.0" layoutY="224.0" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: none;" text="IVB" />
+    <TextField layoutX="163.0" layoutY="224.0" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: none;" text="IIIB" />
+    <TextField layoutX="964.0" layoutY="78.0" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: none;" text="VIIA" />
+    <TextField layoutX="911.0" layoutY="124.0" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: none;" text="VIIA" />
+    <TextField layoutX="858.0" layoutY="124.0" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: none;" text="VIA" />
+    <TextField layoutX="805.0" layoutY="124.0" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: none;" text="VA" />
+    <TextField layoutX="753.0" layoutY="124.0" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: none;" text="IVA" />
+      <Line endX="22.0" endY="0.1999969482421875" layoutX="460.0" layoutY="237.0" startX="-19.0" startY="-1.52587890625E-5" />
+      <Line endX="14" endY="0.1999969482421875" layoutX="556.0" layoutY="236.0" startX="-31.79998779296875" startY="0.1999969482421875" />
+
+  </children>
+</AnchorPane>
