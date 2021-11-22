@@ -163,13 +163,16 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    public Label points, health, logoG, nameID;
+    public Label points, health, logoG, nameID, difficultyTitle;
     public Button checkAnswerButton;
+    public Button easyModeButton;
+    public Button normalModeButton;
+    public Button hardModeButton;
     public TextField usersAnswer;
     public ImageView firstHeart;
     public ImageView secondHeart;
     public ImageView thirdHeart;
-
+    public static String DEGREE_OF_DIFFICULTY= "";
     public static byte GAME_NUM = 0;
     public static int GAME_POINTS = 0;
     public static int GAME_HEALTH = 3;
@@ -198,14 +201,14 @@ public class Controller extends HelloApplication{
         control.logoG.setText(takeLogo(number));
     }
 
-    private static void RightAnswer() {
+    private static void rightAnswer() {
         GAME_POINTS++;
         control.points.setText(String.valueOf(GAME_POINTS));
         control.nameID.setTextFill(Color.GREEN);
         control.points.setTextFill(Color.GREEN);
     }
 
-    private static void WrongAnswer() {
+    private static void wrongAnswer() {
         GAME_HEALTH--;
         control.nameID.setTextFill(Color.RED);
         control.points.setTextFill(Color.RED);
@@ -242,8 +245,8 @@ public class Controller extends HelloApplication{
     private static void gameWin() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Вы победили!");
-        alert.setHeaderText("Вы знаете все элементы!");
-        alert.setContentText("Поздравляем! Теперь вы самый крутой химик!");
+        alert.setHeaderText("Вы знаете " + choosingGameDifficulty(DEGREE_OF_DIFFICULTY) + " элементов!");
+        alert.setContentText("Поздравляем! Вы крутой химик!");
         alert.showAndWait();
         GAME_HEALTH = 3;
         GAME_POINTS = 0;
@@ -251,17 +254,16 @@ public class Controller extends HelloApplication{
         gameEnd();
     }
 
-    private static int[] shuffleArray() {   // тут перетасовачка массива, рабочая, можно поднастроить, если надо, сделаю
-        final int NUMBER_OF_ELEMENTS = 118;
-        int[] arr = new int[NUMBER_OF_ELEMENTS];
-        for (int i = 0; i < NUMBER_OF_ELEMENTS; i++) {
+    private static int[] shuffleArray(int numberOfElements) {
+        int[] arr = new int[numberOfElements];
+        for (int i = 0; i < numberOfElements; i++) {
             arr[i] = i + 1;
         }
         Random rnd = new Random();
         int n, current;
-        for (int i = NUMBER_OF_ELEMENTS - 1; i >= 0; i--) {
+        for (int i = numberOfElements - 1; i >= 0; i--) {
             n = rnd.nextInt(i + 1);
-            current = arr[n];            //тут три строки - свап по сути, можно сделать отдельной функцией, если хочешь, хотя от этого покрытие вряд ли изменится, чисто лишних строки 2
+            current = arr[n];
             arr[n] = arr[i];
             arr[i] = current;
         }
@@ -299,9 +301,9 @@ public class Controller extends HelloApplication{
 
     private static void checkAnswerFunc(String rightAnswer, String usersAnswer) {
         if ((rightAnswer.trim()).equalsIgnoreCase(usersAnswer.trim())){
-            RightAnswer();
+            rightAnswer();
         }else{
-            WrongAnswer();
+            wrongAnswer();
         }
         GAME_NUM++;
         if (GAME_HEALTH == 2){
@@ -313,15 +315,20 @@ public class Controller extends HelloApplication{
         if (GAME_HEALTH == 0){
             control.thirdHeart.setVisible(false);
             gameOver();
-        }else if (GAME_NUM == 119){
+        }else if (GAME_NUM == choosingGameDifficulty(DEGREE_OF_DIFFICULTY) + 1){
             gameWin();
         } else {
-            generateInfo(GAME_ARR[GAME_NUM]);
+            generateInfo(GAME_ARR[GAME_NUM - 1]);
         }
         control.usersAnswer.setText("");
     }
 
     private static void setGameElemsVisible(boolean way){
+        control.difficultyTitle.setVisible(!way);
+        control.easyModeButton.setVisible(!way);
+        control.normalModeButton.setVisible(!way);
+        control.hardModeButton.setVisible(!way);
+        control.checkAnswerButton.setVisible(way);
         control.usersAnswer.setVisible(way);
         control.points.setVisible(way);
         control.nameID.setVisible(way);
@@ -331,22 +338,52 @@ public class Controller extends HelloApplication{
         control.thirdHeart.setVisible(way);
     }
 
+    private static int choosingGameDifficulty(String choice){
+        int numberOfElements = 0;
+        switch (choice) {
+            case ("Easy") -> numberOfElements = 30;
+            case ("Normal") -> numberOfElements = 60;
+            case ("Hard") -> numberOfElements = 118;
+        }
+        return numberOfElements;
+    }
+
+    @FXML
+    protected void esMode(){
+        DEGREE_OF_DIFFICULTY = "Easy";
+        checkAnswer();
+    }
+
+    @FXML
+    protected void normMode(){
+        DEGREE_OF_DIFFICULTY = "Normal";
+        checkAnswer();
+    }
+
+    @FXML
+    protected void hardMode(){
+        DEGREE_OF_DIFFICULTY = "Hard";
+        checkAnswer();
+    }
+
     @FXML
     protected void checkAnswer() {
         if (GAME_NUM == 0){
+            control.nameID.setTextFill(Color.BLACK);
+            control.points.setTextFill(Color.BLACK);
             setGameElemsVisible(true);
             control.checkAnswerButton.setText("Проверить");
             clearAll();
-            GAME_ARR = shuffleArray();
+            GAME_ARR = shuffleArray(choosingGameDifficulty(DEGREE_OF_DIFFICULTY));
             GAME_NUM = 1;
             generateInfo(GAME_ARR[GAME_NUM - 1]);
         }else{
-            String rAnswer = makeStringLower(deleteAllSpaces(takeRightAnswer(GAME_ARR[GAME_NUM])));
+            String rAnswer = makeStringLower(deleteAllSpaces(takeRightAnswer(GAME_ARR[GAME_NUM - 1])));
             String uAnswer = makeStringLower(deleteAllSpaces(usersAnswer.getText()));
             if(usersAnswer.getText().equals("cheat::answer")){
                 control.usersAnswer.setText(rAnswer);
             }else if (usersAnswer.getText().equals("cheat::win")){
-                GAME_POINTS = 118;
+                GAME_POINTS = choosingGameDifficulty(DEGREE_OF_DIFFICULTY);
                 gameWin();
                 control.usersAnswer.setText("");
             } else if (usersAnswer.getText().equals("cheat::gameover")){
