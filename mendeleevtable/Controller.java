@@ -230,28 +230,26 @@ public class Controller extends HelloApplication{
         control.health.setText("Здоровье");
     }
 
-    private static void gameOver(){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Вы проиграли!");
-        alert.setHeaderText("У вас не осталось жизней!");
-        alert.setContentText("Вы набрали " + GAME_POINTS + " очков. В следующий раз будет больше!");
-        alert.showAndWait();
-        GAME_HEALTH = 3;
-        GAME_POINTS = 0;
-        GAME_NUM = 0;
-        gameEnd();
+    private static void gameOver() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("Gameover.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 500, 300);
+        scene.getRoot().setStyle("-fx-font-family: 'serif';");
+        Stage stage = new Stage();
+        stage.setTitle("Game over");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
 
-    private static void gameWin() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Вы победили!");
-        alert.setHeaderText("Вы знаете " + choosingGameDifficulty(DEGREE_OF_DIFFICULTY) + " элементов!");
-        alert.setContentText("Поздравляем! Вы крутой химик!");
-        alert.showAndWait();
-        GAME_HEALTH = 3;
-        GAME_POINTS = 0;
-        GAME_NUM = 0;
-        gameEnd();
+    private static void gameWin() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("GameWin.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 500, 300);
+        scene.getRoot().setStyle("-fx-font-family: 'serif';");
+        Stage stage = new Stage();
+        stage.setTitle("Game Win");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
 
     private static int[] shuffleArray(int numberOfElements) {
@@ -411,5 +409,8 @@ public class Controller extends HelloApplication{
                 checkAnswerFunc(rAnswer, uAnswer);
             }
         }
+        health.setVisible(false);
+        health1.setVisible(false);
+        xxx.setText("Здоровье:");
     }
 }
