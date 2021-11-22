@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #c9cfff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mendeleevtable.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #c9cfff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mendeleevtable.Controller">
     <children>
         <AnchorPane prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #ffffff;">
             <children>
@@ -29,11 +29,6 @@
                 <Font name="Times New Roman" size="24.0" />
             </font>
         </Label>
-      <ImageView fx:id="winWallpaper" cache="true" fitHeight="508.0" fitWidth="607.0" layoutX="-4.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../../../../../src/main/resources/a264784c11aec8fcec5c568a6d9aff5b-1000.jpg" />
-         </image>
-      </ImageView>
         <Label fx:id="health" layoutX="300.0" layoutY="66.0" text="Здоровье:" visible="false">
             <font>
                 <Font name="Times New Roman" size="24.0" />
@@ -49,7 +44,7 @@
                 <Font name="Times New Roman" size="18.0" />
             </font>
         </TextField>
-        <Button fx:id="checkAnswerButton" layoutX="172.0" layoutY="540.0" mnemonicParsing="false" onAction="#checkAnswer" prefHeight="30.0" prefWidth="255.0" style="-fx-background-color: #2d009e; -fx-text-fill: #FFFFFF;" text="начать игру">
+        <Button fx:id="checkAnswerButton" layoutX="172.0" layoutY="540.0" mnemonicParsing="false" onAction="#checkAnswer" prefHeight="30.0" prefWidth="255.0" style="-fx-background-color: #2d009e; -fx-text-fill: #FFFFFF;" text="начать игру" visible="false">
             <font>
                 <Font name="Times New Roman" size="16.0" />
             </font>
@@ -84,34 +79,24 @@
             <Image url="@../../../../../src/main/resources/heart.png" />
          </image>
       </ImageView>
-      <Label fx:id="finishPoints" layoutX="152.0" layoutY="381.0" prefHeight="30.0" prefWidth="179.0" text="Набрано очков:" textFill="RED" visible="false">
+      <Button fx:id="normalModeButton" layoutX="172.0" layoutY="300.0" mnemonicParsing="false" onAction="#normMode" prefHeight="30.0" prefWidth="255.0" style="-fx-background-color: #2d009e; -fx-text-fill: #FFFFFF;" text="Средний (60 первых элементов)">
          <font>
-            <Font name="Times New Roman" size="24.0" />
+            <Font name="Times New Roman" size="16.0" />
          </font>
-      </Label>
-      <Label fx:id="totalPoints" layoutX="335.0" layoutY="383.0" text="0" textFill="RED" visible="false">
+      </Button>
+      <Button fx:id="easyModeButton" layoutX="172.0" layoutY="218.0" mnemonicParsing="false" onAction="#esMode" prefHeight="30.0" prefWidth="255.0" style="-fx-background-color: #2d009e; -fx-text-fill: #FFFFFF;" text="Лёгкий (30 первых элементов)">
          <font>
-            <Font name="Times New Roman" size="24.0" />
+            <Font name="Times New Roman" size="16.0" />
          </font>
-      </Label>
-      <Label fx:id="finishNameID" layoutX="152.0" layoutY="425.0" prefHeight="30.0" prefWidth="188.0" text="Осталось жизней:" textFill="RED" visible="false">
+      </Button>
+      <Button fx:id="hardModeButton" layoutX="172.0" layoutY="382.0" mnemonicParsing="false" onAction="#hardMode" prefHeight="30.0" prefWidth="255.0" style="-fx-background-color: #2d009e; -fx-text-fill: #FFFFFF;" text="Сложный (все элементы)">
          <font>
-            <Font name="Times New Roman" size="24.0" />
+            <Font name="Times New Roman" size="16.0" />
          </font>
-      </Label>
-      <Label fx:id="winCongrats" alignment="CENTER" layoutX="210.0" layoutY="102.0" prefHeight="30.0" prefWidth="179.0" text="ПОБЕДА" textFill="RED" visible="false">
+      </Button>
+      <Label fx:id="difficultyTitle" layoutX="97.0" layoutY="94.0" text="Выберите уровень сложности" textAlignment="CENTER">
          <font>
-            <Font name="Times New Roman" size="24.0" />
-         </font>
-      </Label>
-      <ImageView fx:id="prize" fitHeight="181.0" fitWidth="148.0" layoutX="226.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../../../../../src/main/resources/golden-cup-clip-art-24.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="totalHealth" layoutX="345.0" layoutY="427.0" text="0" textFill="RED" visible="false">
-         <font>
-            <Font name="Times New Roman" size="24.0" />
+            <Font name="Times New Roman" size="32.0" />
          </font>
       </Label>
     </children>
