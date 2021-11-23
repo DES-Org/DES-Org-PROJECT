@@ -46,7 +46,7 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    protected void toTableButton(ActionEvent event)  {
+    public void toTableButton(ActionEvent event)  {
 
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -68,7 +68,7 @@ public class Controller extends HelloApplication{
     public static Controller control = new Controller();
 
     @FXML
-    protected void toGameButton(ActionEvent event) throws IOException {
+    public void toGameButton(ActionEvent event) throws IOException {
         String logo = "", name = "";
         File file = new File(Objects.requireNonNull(getClass().getResource("1.txt")).getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
@@ -90,7 +90,7 @@ public class Controller extends HelloApplication{
 
     public static boolean ELEMENT_INFO_WINDOW_OPEN = false;
     @FXML
-    protected void goToElemInfo(ActionEvent event) throws Exception  {
+    public void goToElemInfo(ActionEvent event) throws Exception  {
         String logo = "", name = "", mass = "", info = "", num = "";
         Button btn = (Button) event.getSource();
         File file = new File(Objects.requireNonNull(getClass().getResource(btn.getId() + ".txt")).getFile());
@@ -118,7 +118,7 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    protected void backToMain(ActionEvent event) {
+    public void backToMain(ActionEvent event) {
         ((Node)(event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -136,7 +136,7 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    protected void backToMain1(ActionEvent event) {
+    public void backToMain1(ActionEvent event) {
         gameEnd();
         ((Node)(event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
@@ -155,7 +155,7 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    protected void backToTable(ActionEvent event){
+    public void backToTable(ActionEvent event){
         ((Node)(event.getSource())).getScene().getWindow().hide();
     }
 
@@ -333,7 +333,7 @@ public class Controller extends HelloApplication{
     public static boolean IS_GAME_STARTED = false;
 
     @FXML
-    protected void checkAnswer() {
+    public void checkAnswer() {
         if (!IS_GAME_STARTED){
             setGameElemsVisible(true);
             control.checkAnswerButton.setText("Проверить");
