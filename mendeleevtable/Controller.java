@@ -172,11 +172,13 @@ public class Controller extends HelloApplication{
     public static int GAME_HEALTH = 3;
     public static int[] GAME_ARR = new int[118];
 
+    public static Random rnd = new Random();
+
     public static String takeRightAnswer(int number){
         String name = "";
         File file = new File(Objects.requireNonNull(Controller.class.getResource(number + ".txt")).getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
-            String tmp = br.readLine();
+            br.readLine();
             name = br.readLine();
         }catch (Exception ignored) {}
         return name;
@@ -257,7 +259,6 @@ public class Controller extends HelloApplication{
         for (int i = 0; i < numberOfElements; i++) {
             arr[i] = i + 1;
         }
-        Random rnd = new Random();
         int n, current;
         for (int i = numberOfElements - 1; i >= 0; i--) {
             n = rnd.nextInt(i + 1);
@@ -383,7 +384,6 @@ public class Controller extends HelloApplication{
             if(usersAnswer.getText().equals("cheat::answer")){
                 control.usersAnswer.setText(rAnswer);
             }else if (usersAnswer.getText().equals("cheat::win")){
-                choosingGameDifficulty(DEGREE_OF_DIFFICULTY);
                 gameWin(event);
                 control.usersAnswer.setText("");
             } else if (usersAnswer.getText().equals("cheat::gameover")){
