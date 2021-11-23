@@ -6,12 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -19,10 +17,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
-
 
 
 public class Controller extends HelloApplication{
@@ -49,7 +45,7 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    protected void toTableButton(ActionEvent event)  {
+    public void toTableButton(ActionEvent event)  {
 
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -68,10 +64,10 @@ public class Controller extends HelloApplication{
         ((Node)(event.getSource())).getScene().getWindow().hide();
     }
 
-    private static Controller control = new Controller();
+    public static Controller control = new Controller();
 
     @FXML
-    protected void toGameButton(ActionEvent event) throws IOException {
+    public void toGameButton(ActionEvent event) throws IOException {
         String logo = "", name = "";
         File file = new File(Objects.requireNonNull(getClass().getResource("1.txt")).getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
@@ -91,9 +87,8 @@ public class Controller extends HelloApplication{
         control = loader.getController();
     }
 
-    private static boolean ELEMENT_INFO_WINDOW_OPEN = false;
     @FXML
-    protected void goToElemInfo(ActionEvent event) throws Exception  {
+    public void goToElemInfo(ActionEvent event) throws Exception  {
         String logo = "", name = "", mass = "", info = "", num = "";
         Button btn = (Button) event.getSource();
         File file = new File(Objects.requireNonNull(getClass().getResource(btn.getId() + ".txt")).getFile());
@@ -121,7 +116,7 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    protected void backToMain(ActionEvent event) {
+    public void backToMain(ActionEvent event) {
         ((Node)(event.getSource())).getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
@@ -139,9 +134,8 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    protected void backToMain1(ActionEvent event) {
-        gameEnd();
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+    public void backToMain1(ActionEvent event) {
+        gameEnd(event);
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
         String path = "view.fxml";
@@ -158,12 +152,12 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    protected void backToTable(ActionEvent event){
+    public void backToTable(ActionEvent event){
         ((Node)(event.getSource())).getScene().getWindow().hide();
     }
 
     @FXML
-    public Label points, health, logoG, nameID, difficultyTitle;
+    public Label points, health, logoG, nameID, gameInfoLabel, totalPoints;
     public Button checkAnswerButton;
     public Button easyModeButton;
     public Button normalModeButton;
@@ -178,7 +172,7 @@ public class Controller extends HelloApplication{
     public static int GAME_HEALTH = 3;
     public static int[] GAME_ARR = new int[118];
 
-    private static String takeRightAnswer(int number){
+    public static String takeRightAnswer(int number){
         String name = "";
         File file = new File(Objects.requireNonNull(Controller.class.getResource(number + ".txt")).getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
@@ -188,7 +182,7 @@ public class Controller extends HelloApplication{
         return name;
     }
 
-    private static String takeLogo(int number){
+    public static String takeLogo(int number){
         String logo = "";
         File file = new File(Objects.requireNonNull(Controller.class.getResource(number + ".txt")).getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
@@ -197,24 +191,24 @@ public class Controller extends HelloApplication{
         return logo;
     }
 
-    private static void generateInfo(int number){
+    public static void generateInfo(int number){
         control.logoG.setText(takeLogo(number));
     }
 
-    private static void rightAnswer() {
+    public static void rightAnswer() {
         GAME_POINTS++;
         control.points.setText(String.valueOf(GAME_POINTS));
         control.nameID.setTextFill(Color.GREEN);
         control.points.setTextFill(Color.GREEN);
     }
 
-    private static void wrongAnswer() {
+    public static void wrongAnswer() {
         GAME_HEALTH--;
         control.nameID.setTextFill(Color.RED);
         control.points.setTextFill(Color.RED);
     }
 
-    private static void clearAll(){
+    public static void clearAll(){
         GAME_HEALTH = 3;
         GAME_POINTS = 0;
         GAME_NUM = 0;
@@ -223,27 +217,33 @@ public class Controller extends HelloApplication{
         control.usersAnswer.setText("");
     }
 
-    private static void gameEnd(){
+    public static void gameEnd(ActionEvent event){
+        ((Node)(event.getSource())).getScene().getWindow().hide();
         setGameElemsVisible(false);
         clearAll();
         control.checkAnswerButton.setText("Начать игру");
         control.health.setText("Здоровье");
     }
 
-    private static void gameOver() throws IOException{
+    public static void gameOver(ActionEvent event) throws IOException{
+        int points = GAME_POINTS;
+        System.out.println(points);
+        gameEnd(event);
         FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("Gameover.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500, 300);
+        Scene scene = new Scene(fxmlLoader.load());
+        Controller ctrl = fxmlLoader.getController();
         scene.getRoot().setStyle("-fx-font-family: 'serif';");
         Stage stage = new Stage();
         stage.setTitle("Game over");
         stage.setScene(scene);
-        stage.setResizable(false);
         stage.show();
+        ctrl.totalPoints.setText(String.valueOf(points));
     }
 
-    private static void gameWin() throws IOException{
+    public static void gameWin(ActionEvent event) throws IOException{
+        gameEnd(event);
         FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("GameWin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500, 300);
+        Scene scene = new Scene(fxmlLoader.load());
         scene.getRoot().setStyle("-fx-font-family: 'serif';");
         Stage stage = new Stage();
         stage.setTitle("Game Win");
@@ -268,7 +268,7 @@ public class Controller extends HelloApplication{
         return arr;
     }
 
-    private static String deleteAllSpaces (String line){
+    public static String deleteAllSpaces (String line){
         char[] arrayOfLetters = line.toCharArray();
         StringBuilder answer = new StringBuilder();
         for (char arrayOfLetter : arrayOfLetters) {
@@ -279,7 +279,7 @@ public class Controller extends HelloApplication{
         return answer.toString();
     }
 
-    private static String makeStringLower(String line){
+    public static String makeStringLower(String line){
         char[] arrayOfLetters = line.toCharArray();
         for (int i = 0; i < arrayOfLetters.length; i++) {
             if ((arrayOfLetters[i] >= 1040) && (arrayOfLetters[i] < 1072)){
@@ -297,7 +297,7 @@ public class Controller extends HelloApplication{
         return answer.toString();
     }
 
-    private static void checkAnswerFunc(String rightAnswer, String usersAnswer) {
+    public static void checkAnswerFunc(String rightAnswer, String usersAnswer, ActionEvent event) throws IOException {
         if ((rightAnswer.trim()).equalsIgnoreCase(usersAnswer.trim())){
             rightAnswer();
         }else{
@@ -312,20 +312,21 @@ public class Controller extends HelloApplication{
         }
         if (GAME_HEALTH == 0){
             control.thirdHeart.setVisible(false);
-            gameOver();
+            gameOver(event);
         }else if (GAME_NUM == choosingGameDifficulty(DEGREE_OF_DIFFICULTY) + 1){
-            gameWin();
+            gameWin(event);
         } else {
             generateInfo(GAME_ARR[GAME_NUM - 1]);
         }
         control.usersAnswer.setText("");
     }
 
-    private static void setGameElemsVisible(boolean way){
-        control.difficultyTitle.setVisible(!way);
+    public static void setGameElemsVisible(boolean way){
+        control.gameInfoLabel.setVisible(!way);
         control.easyModeButton.setVisible(!way);
         control.normalModeButton.setVisible(!way);
         control.hardModeButton.setVisible(!way);
+        control.checkAnswerButton.setVisible(way);
         control.checkAnswerButton.setVisible(way);
         control.usersAnswer.setVisible(way);
         control.points.setVisible(way);
@@ -347,25 +348,26 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    protected void esMode(){
+    protected void esMode(ActionEvent event) throws IOException {
         DEGREE_OF_DIFFICULTY = "Easy";
-        checkAnswer();
+        checkAnswer(event);
     }
 
     @FXML
-    protected void normMode(){
+    protected void normMode(ActionEvent event) throws IOException {
         DEGREE_OF_DIFFICULTY = "Normal";
-        checkAnswer();
+        checkAnswer(event);
     }
 
     @FXML
-    protected void hardMode(){
+    protected void hardMode(ActionEvent event) throws IOException {
         DEGREE_OF_DIFFICULTY = "Hard";
-        checkAnswer();
+        checkAnswer(event);
     }
 
+
     @FXML
-    protected void checkAnswer() {
+    public void checkAnswer(ActionEvent event) throws IOException {
         if (GAME_NUM == 0){
             control.nameID.setTextFill(Color.BLACK);
             control.points.setTextFill(Color.BLACK);
@@ -381,11 +383,11 @@ public class Controller extends HelloApplication{
             if(usersAnswer.getText().equals("cheat::answer")){
                 control.usersAnswer.setText(rAnswer);
             }else if (usersAnswer.getText().equals("cheat::win")){
-                GAME_POINTS = choosingGameDifficulty(DEGREE_OF_DIFFICULTY);
-                gameWin();
+                choosingGameDifficulty(DEGREE_OF_DIFFICULTY);
+                gameWin(event);
                 control.usersAnswer.setText("");
             } else if (usersAnswer.getText().equals("cheat::gameover")){
-                gameOver();
+                gameOver(event);
                 control.usersAnswer.setText("");
             } else if (usersAnswer.getText().equals("cheat::pluspoints")){
                 GAME_POINTS += 5;
@@ -406,11 +408,8 @@ public class Controller extends HelloApplication{
                 control.usersAnswer.setText("");
 
             } else {
-                checkAnswerFunc(rAnswer, uAnswer);
+                checkAnswerFunc(rAnswer, uAnswer, event);
             }
         }
-        health.setVisible(false);
-        health1.setVisible(false);
-        xxx.setText("Здоровье:");
     }
 }
