@@ -8,7 +8,7 @@ class ControllerTest {
 
     @Test
     void makeStringLower_Test() {
-        String given = "ПРИвет";
+        String given = "ПРИВЕт";
         String expected = "привет";
         assertEquals(expected, Controller.makeStringLower(given));
     }
