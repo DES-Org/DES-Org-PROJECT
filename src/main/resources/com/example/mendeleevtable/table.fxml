@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1019.0" style="-fx-background-color: #c9cfff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mendeleevtable.Controller">
+  <children>
+    <AnchorPane layoutX="-6.0" prefHeight="56.0" prefWidth="1025.0" style="-fx-background-color: #ffffff;">
+      <children>
+        <Label id="ll11111" layoutX="233.0" layoutY="9.0" text="Переодическая таблица элементов" textAlignment="CENTER">
+          <font>
+            <Font name="Times New Roman" size="32.0" />
+          </font>
+        </Label>
+        <Button id="backToMain" layoutX="872.0" layoutY="12.0" mnemonicParsing="false" onAction="#backToMain" prefHeight="28.0" prefWidth="114.0" style="-fx-background-color: #2d009e; -fx-text-fill: #FFFFFF;" text="назад">
+          <font>
+            <Font name="Times New Roman" size="16.0" />
+          </font>
+        </Button>
+      </children>
+    </AnchorPane>
+    <Button id="1" alignment="CENTER" layoutX="52.0" layoutY="104.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="H" />
+    <Button id="3" alignment="CENTER" layoutX="52.0" layoutY="153.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Li" />
+    <Button id="11" alignment="CENTER" layoutX="52.0" layoutY="201.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Na" />
+    <Button id="19" alignment="CENTER" layoutX="52.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="K" />
+    <Button id="37" alignment="CENTER" layoutX="52.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Rb" />
+    <Button id="55" alignment="CENTER" layoutX="52.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Cs" />
+    <Button id="87" alignment="CENTER" layoutX="52.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Fr" />
+    <Button id="4" alignment="CENTER" layoutX="105.0" layoutY="153.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Be" />
+    <Button id="12" alignment="CENTER" layoutX="105.0" layoutY="201.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Mg" />
+    <Button id="20" alignment="CENTER" layoutX="105.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ca" />
+    <Button id="38" alignment="CENTER" layoutX="105.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Sr" />
+    <Button id="56" alignment="CENTER" layoutX="105.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ba" />
+    <Button id="88" alignment="CENTER" layoutX="105.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ra" />
+    <Button id="21" alignment="CENTER" layoutX="159.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Sc" />
+    <Button id="39" alignment="CENTER" layoutX="159.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Y" />
+    <Button id="22" alignment="CENTER" layoutX="212.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ti" />
+    <Button id="40" alignment="CENTER" layoutX="212.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Zn" />
+    <Button id="72" alignment="CENTER" layoutX="212.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Hf" />
+    <Button id="104" alignment="CENTER" layoutX="212.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Rf" />
+    <Button id="23" alignment="CENTER" layoutX="266.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="V" />
+    <Button id="41" alignment="CENTER" layoutX="266.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Nb" />
+    <Button id="73" alignment="CENTER" layoutX="266.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ta" />
+    <Button id="105" alignment="CENTER" layoutX="266.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Db" />
+    <Button id="24" alignment="CENTER" layoutX="319.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Cr" />
+    <Button id="42" alignment="CENTER" layoutX="319.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Mo" />
+    <Button id="74" alignment="CENTER" layoutX="319.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="W" />
+    <Button id="106" alignment="CENTER" layoutX="319.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Sg" />
+    <Button id="25" alignment="CENTER" layoutX="373.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Mn" />
+    <Button id="43" alignment="CENTER" layoutX="373.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Tc" />
+    <Button id="75" alignment="CENTER" layoutX="373.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Re" />
+    <Button id="107" alignment="CENTER" layoutX="373.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Bh" />
+    <Button id="26" alignment="CENTER" layoutX="426.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Fe" />
+    <Button id="44" alignment="CENTER" layoutX="426.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ru" />
+    <Button id="76" alignment="CENTER" layoutX="426.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Os" />
+    <Button id="108" alignment="CENTER" layoutX="426.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Hs" />
+    <Button id="27" alignment="CENTER" layoutX="481.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Co" />
+    <Button id="45" alignment="CENTER" layoutX="481.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Rh" />
+    <Button id="77" alignment="CENTER" layoutX="481.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ir" />
+    <Button id="109" alignment="CENTER" layoutX="481.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Mt" />
+    <Button id="28" alignment="CENTER" layoutX="534.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ni" />
+    <Button id="46" alignment="CENTER" layoutX="534.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Pd" />
+    <Button id="78" alignment="CENTER" layoutX="534.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Pt" />
+    <Button id="110" alignment="CENTER" layoutX="534.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ds" />
+    <Button id="29" alignment="CENTER" layoutX="588.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Cu" />
+    <Button id="47" alignment="CENTER" layoutX="588.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ag" />
+    <Button id="79" alignment="CENTER" layoutX="588.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Au" />
+    <Button id="111" alignment="CENTER" layoutX="588.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Rg" />
+    <Button id="30" alignment="CENTER" layoutX="641.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Zn" />
+    <Button id="48" alignment="CENTER" layoutX="641.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Cd" />
+    <Button id="80" alignment="CENTER" layoutX="641.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Hg" />
+    <Button id="112" alignment="CENTER" layoutX="641.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Cn" />
+    <Button id="5" alignment="CENTER" layoutX="696.0" layoutY="151.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="B" />
+    <Button id="13" alignment="CENTER" layoutX="696.0" layoutY="199.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Al" />
+    <Button id="31" alignment="CENTER" layoutX="696.0" layoutY="247.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ga" />
+    <Button id="49" alignment="CENTER" layoutX="696.0" layoutY="298.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="In" />
+    <Button id="81" alignment="CENTER" layoutX="696.0" layoutY="352.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Tl" />
+    <Button id="113" alignment="CENTER" layoutX="696.0" layoutY="401.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Nh" />
+    <Button id="6" alignment="CENTER" layoutX="749.0" layoutY="151.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="C" />
+    <Button id="14" alignment="CENTER" layoutX="749.0" layoutY="199.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Si" />
+    <Button id="32" alignment="CENTER" layoutX="749.0" layoutY="247.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ge" />
+    <Button id="50" alignment="CENTER" layoutX="749.0" layoutY="298.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Sn" />
+    <Button id="82" alignment="CENTER" layoutX="749.0" layoutY="352.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Pb" />
+    <Button id="114" alignment="CENTER" layoutX="749.0" layoutY="401.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Fl" />
+    <Button id="7" alignment="CENTER" layoutX="801.0" layoutY="151.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="N" />
+    <Button id="15" alignment="CENTER" layoutX="801.0" layoutY="199.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="P" />
+    <Button id="33" alignment="CENTER" layoutX="801.0" layoutY="247.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="As" />
+    <Button id="51" alignment="CENTER" layoutX="801.0" layoutY="298.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Sb" />
+    <Button id="83" alignment="CENTER" layoutX="801.0" layoutY="352.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Bi" />
+    <Button id="115" alignment="CENTER" layoutX="801.0" layoutY="401.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Mc" />
+    <Button id="8" alignment="CENTER" layoutX="854.0" layoutY="151.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="O" />
+    <Button id="16" alignment="CENTER" layoutX="854.0" layoutY="199.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="S" />
+    <Button id="34" alignment="CENTER" layoutX="854.0" layoutY="247.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Se" />
+    <Button id="52" alignment="CENTER" layoutX="854.0" layoutY="298.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Te" />
+    <Button id="84" alignment="CENTER" layoutX="854.0" layoutY="352.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Po" />
+    <Button id="116" alignment="CENTER" layoutX="854.0" layoutY="401.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Lv" />
+    <Button id="9" alignment="CENTER" layoutX="907.0" layoutY="152.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="F" />
+    <Button id="17" alignment="CENTER" layoutX="907.0" layoutY="200.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Cl" />
+    <Button id="35" alignment="CENTER" layoutX="907.0" layoutY="248.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Br" />
+    <Button id="53" alignment="CENTER" layoutX="907.0" layoutY="299.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="I" />
+    <Button id="85" alignment="CENTER" layoutX="907.0" layoutY="353.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="At" />
+    <Button id="117" alignment="CENTER" layoutX="907.0" layoutY="402.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ts" />
+    <Button id="10" alignment="CENTER" layoutX="960.0" layoutY="152.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ne" />
+    <Button id="18" alignment="CENTER" layoutX="960.0" layoutY="200.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ar" />
+    <Button id="36" alignment="CENTER" layoutX="960.0" layoutY="248.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Kr" />
+    <Button id="54" alignment="CENTER" layoutX="960.0" layoutY="299.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Xe" />
+    <Button id="86" alignment="CENTER" layoutX="960.0" layoutY="353.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Rn" />
+    <Button id="118" alignment="CENTER" layoutX="960.0" layoutY="402.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Og" />
+    <Button id="2" alignment="CENTER" layoutX="960.0" layoutY="105.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="He" />
+    <Button id="57" alignment="CENTER" layoutX="159.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="La" />
+    <Button id="89" alignment="CENTER" layoutX="159.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ac" />
+    <Button id="58" alignment="CENTER" layoutX="212.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ce" />
+    <Button id="90" alignment="CENTER" layoutX="212.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Th" />
+    <Button id="59" alignment="CENTER" layoutX="266.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Pr" />
+    <Button id="91" alignment="CENTER" layoutX="266.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Pa" />
+    <Button id="60" alignment="CENTER" layoutX="319.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Nd" />
+    <Button id="92" alignment="CENTER" layoutX="319.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="U" />
+    <Button id="61" alignment="CENTER" layoutX="373.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Pm" />
+    <Button id="93" alignment="CENTER" layoutX="373.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Np" />
+    <Button id="62" alignment="CENTER" layoutX="426.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Sm" />
+    <Button id="94" alignment="CENTER" layoutX="426.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Pu" />
+    <Button id="63" alignment="CENTER" layoutX="481.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Eu" />
+    <Button id="95" alignment="CENTER" layoutX="481.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Am" />
+    <Button id="64" alignment="CENTER" layoutX="534.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Gd" />
+    <Button id="96" alignment="CENTER" layoutX="534.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Cm" />
+    <Button id="65" alignment="CENTER" layoutX="588.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Tb" />
+    <Button id="97" alignment="CENTER" layoutX="588.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Bk" />
+    <Button id="66" alignment="CENTER" layoutX="641.0" layoutY="476.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Dy" />
+    <Button id="98" alignment="CENTER" layoutX="641.0" layoutY="525.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Cf" />
+    <Button id="67" alignment="CENTER" layoutX="696.0" layoutY="474.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Ho" />
+    <Button id="99" alignment="CENTER" layoutX="696.0" layoutY="523.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Es" />
+    <Button id="68" alignment="CENTER" layoutX="749.0" layoutY="474.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Er" />
+    <Button id="100" alignment="CENTER" layoutX="749.0" layoutY="523.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Fm" />
+    <Button id="69" alignment="CENTER" layoutX="801.0" layoutY="474.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Tm" />
+    <Button id="101" alignment="CENTER" layoutX="801.0" layoutY="523.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Md" />
+    <Button id="70" alignment="CENTER" layoutX="854.0" layoutY="474.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Yb" />
+    <Button id="102" alignment="CENTER" layoutX="854.0" layoutY="523.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="No" />
+    <Button id="71" alignment="CENTER" layoutX="906.0" layoutY="474.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Lu" />
+    <Button id="103" alignment="CENTER" layoutX="906.0" layoutY="523.0" mnemonicParsing="false" onAction="#goToElemInfo" prefHeight="38.0" prefWidth="43.0" text="Lr" />
+  </children>
+</AnchorPane>
