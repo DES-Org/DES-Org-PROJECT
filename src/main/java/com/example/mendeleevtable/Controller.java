@@ -20,6 +20,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+import static java.lang.System.err;
 import static java.lang.System.in;
 
 
@@ -57,46 +58,44 @@ public class Controller extends HelloApplication{
             stage.setResizable(false);
             assert root != null;
             stage.setScene(new Scene(root));
-            stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
             stage.show();
             ((Node)(event.getSource())).getScene().getWindow().hide();
         }
         return "table opened";
     }
 
-    public static Controller control = new Controller();
+    private static Controller control = new Controller();
 
 
     @FXML
     public static String toGameButton(ActionEvent event, boolean isTest) throws IOException {
 
-        String logo = "", name = "";
+        String logo = "1", name = "1";
         File file = new File(Objects.requireNonNull(Controller.class.getResource("1.txt")).getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
             logo = br.readLine();
             name = br.readLine();
-        }catch (Exception ignored) {}
+        }catch (Exception e){
+            System.out.println(e);
+        }
         if (!isTest) {
             FXMLLoader loader = new FXMLLoader(Controller.class.getResource("game.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Игра");
             stage.setResizable(false);
-            stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
             stage.show();
             ((Node)(event.getSource())).getScene().getWindow().hide();
             control = loader.getController();
         }
-        System.out.println(logo);
-        System.out.println(name);
         return "game frame opened";
     }
 
     @FXML
-    public static String goToElemInfo(ActionEvent event, boolean isTest) throws Exception  {
+    public static String goToElemInfo(ActionEvent event, boolean isTest) {
 
-        String logo = "", name = "", mass = "", info = "", num = "";
+        String logo = "1", name = "1", mass = "1", info = "1", num = "1";
         int numeric;
         if (!isTest) {
             Button btn = (Button) event.getSource();
@@ -112,15 +111,21 @@ public class Controller extends HelloApplication{
             mass = br.readLine();
             info = br.readLine();
 
-        }catch (Exception ignored) {}
+        }catch (Exception e) {
+            System.out.println(e);
+        }
 
         if (!isTest) {
             FXMLLoader loader = new FXMLLoader(Controller.class.getResource("info.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Element Info");
             stage.setResizable(false);
-            stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
-            Parent root = loader.load();
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             Controller controller = loader.getController();
             stage.setScene(new Scene(root));
             stage.show();
@@ -147,7 +152,6 @@ public class Controller extends HelloApplication{
             }
             Stage stage = new Stage();
             stage.setResizable(false);
-            stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
             assert root != null;
             stage.setScene(new Scene(root));
             stage.show();
@@ -169,7 +173,6 @@ public class Controller extends HelloApplication{
             }
             Stage stage = new Stage();
             stage.setResizable(false);
-            stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
             assert root != null;
             stage.setScene(new Scene(root));
             stage.show();
@@ -184,22 +187,27 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    public Label points, health, logoG, nameID, gameInfoLabel, totalPoints;
-    public Button checkAnswerButton;
-    public Button easyModeButton;
-    public Button normalModeButton;
-    public Button hardModeButton;
-    public TextField usersAnswer;
-    public ImageView firstHeart;
-    public ImageView secondHeart;
-    public ImageView thirdHeart;
-    public static String DEGREE_OF_DIFFICULTY= "";
-    public static byte GAME_NUM = 0;
-    public static int GAME_POINTS = 0;
-    public static int GAME_HEALTH = 3;
-    public static int[] GAME_ARR = new int[118];
+    private Label points;
+    private Label health;
+    private Label logoG;
+    private Label nameID;
+    private Label gameInfoLabel;
+    private Label totalPoints;
+    private Button checkAnswerButton;
+    private Button easyModeButton;
+    private Button normalModeButton;
+    private Button hardModeButton;
+    private TextField usersAnswer;
+    private ImageView firstHeart;
+    private ImageView secondHeart;
+    private ImageView thirdHeart;
+    private static String DEGREE_OF_DIFFICULTY= "";
+    private static byte GAME_NUM = 0;
+    private static int GAME_POINTS = 0;
+    private static int GAME_HEALTH = 3;
+    private static int[] GAME_ARR = new int[118];
 
-    public static Random rnd = new Random();
+    private static final Random rnd = new Random();
 
     public static String takeRightAnswer(int number){
         String name = "";
@@ -207,7 +215,9 @@ public class Controller extends HelloApplication{
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
             name = br.readLine();
             name = br.readLine();
-        }catch (Exception ignored) {}
+        }catch (Exception e) {
+            System.out.println(e);
+        }
         return name;
     }
 
@@ -272,7 +282,6 @@ public class Controller extends HelloApplication{
 
     public static int gameOver(ActionEvent event, boolean isTest) throws IOException{
         int points = GAME_POINTS;
-        System.out.println(points);
         if (!isTest) {
             gameEnd(event, false);
             FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("Gameover.fxml"));
@@ -280,7 +289,6 @@ public class Controller extends HelloApplication{
             Controller ctrl = fxmlLoader.getController();
             scene.getRoot().setStyle("-fx-font-family: 'serif';");
             Stage stage = new Stage();
-            stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
             stage.setTitle("Game over");
             stage.setScene(scene);
             stage.show();
@@ -296,7 +304,6 @@ public class Controller extends HelloApplication{
             Scene scene = new Scene(fxmlLoader.load());
             scene.getRoot().setStyle("-fx-font-family: 'serif';");
             Stage stage = new Stage();
-            stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
             stage.setTitle("Game Win");
             stage.setScene(scene);
             stage.setResizable(false);
@@ -310,14 +317,14 @@ public class Controller extends HelloApplication{
         for (int i = 0; i < numberOfElements; i++) {
             arr[i] = i + 1;
         }
-        int n, current;
+        int n;
+        int current;
         for (int i = numberOfElements - 1; i >= 0; i--) {
             n = rnd.nextInt(i + 1);
             current = arr[n];
             arr[n] = arr[i];
             arr[i] = current;
         }
-        System.out.println(Arrays.toString(arr));
         return arr;
     }
 
@@ -336,10 +343,10 @@ public class Controller extends HelloApplication{
         char[] arrayOfLetters = line.toCharArray();
         for (int i = 0; i < arrayOfLetters.length; i++) {
             if ((arrayOfLetters[i] >= 1040) && (arrayOfLetters[i] < 1072)){
-                arrayOfLetters[i] = (char) ((int) arrayOfLetters[i] + 32);
+                arrayOfLetters[i] = (char) ( arrayOfLetters[i] + 32);
             } else {
                 if (arrayOfLetters[i] == 1025){
-                    arrayOfLetters[i] = (char) ((int) arrayOfLetters[i] + 80); //Ё
+                    arrayOfLetters[i] = (char) ( arrayOfLetters[i] + 80); //Ё
                 }
             }
         }
@@ -399,17 +406,18 @@ public class Controller extends HelloApplication{
     }
 
     public static int choosingGameDifficulty(String choice){
-        int numberOfElements = 0;
+        int numberOfElements;
         switch (choice) {
             case ("Easy") -> numberOfElements = 30;
             case ("Normal") -> numberOfElements = 60;
             case ("Hard") -> numberOfElements = 118;
+            default -> numberOfElements = 100;
         }
         return numberOfElements;
     }
 
     @FXML
-    public void esMode(ActionEvent event) throws IOException {
+    public  void esMode(ActionEvent event) throws IOException {
         DEGREE_OF_DIFFICULTY = "Easy";
         checkAnswer(event, false);
     }
@@ -481,8 +489,8 @@ public class Controller extends HelloApplication{
     }
 
 
-    public static HashSet<Integer> fillRange(int num){
-        HashSet <Integer> set = new HashSet<>();
+    public static Set<Integer> fillRange(int num){
+        Set <Integer> set = new HashSet<>();
         for (int i = num; i >= 0; i--){
             set.add(i + num);
         }
@@ -490,7 +498,7 @@ public class Controller extends HelloApplication{
     }
 
 
-    public static HashSet <Integer> cutExtraNum(HashSet <Integer> set, int num){
+    public static Set <Integer> cutExtraNum(Set <Integer> set, int num){
         int tmp;
         for (int i = 2; i <= 5; i++){
             Iterator<Integer> iterator = set.iterator();
@@ -606,8 +614,10 @@ public class Controller extends HelloApplication{
         int lengthLeft = mid - left + 1;
         int lengthRight = right - mid;
 
-        int leftArray[] = new int [lengthLeft];
-        int rightArray[] = new int [lengthRight];
+        int[] leftArray;
+        leftArray = new int [lengthLeft];
+        int[] rightArray;
+        rightArray = new int [lengthRight];
 
         for (int i = 0; i < lengthLeft; i++)
             leftArray[i] = array[left+i];
