@@ -245,4 +245,15 @@ public class ControllerTest {
         };
         int[][] actual = Controller.cutArr(3, 5, my);
     }
+    
+    
+    @Test
+    public void findAllCombinations_Test(){
+        int[][][] expected = new int[1][1][1];
+        expected[0][0][0] = 1;
+        int[][][] actual = Controller.findAllCombinations("12359");
+        assertArrayEquals(expected, actual);
+    }
+    
+    
 }
