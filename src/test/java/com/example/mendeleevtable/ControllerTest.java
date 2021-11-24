@@ -3,31 +3,17 @@ package com.example.mendeleevtable;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ControllerTest {
+
+    final String ELEMENT = "ВоДОрОд";
 
     @Test
     void makeStringLower_Test() {
         String given = "ПРИВЕт";
         String expected = "привет";
         assertEquals(expected, Controller.makeStringLower(given));
-    }
-
-    @Test
-    void takeRightAnswer_Test() {
-        int num = 6;
-        String expected = "углерод";
-        String actual = Controller.makeStringLower(Controller.takeRightAnswer(num));
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void takeLogo_Test() {
-        int num = 2;
-        String expected = "Не";
-        String actual = Controller.deleteAllSpaces(Controller.takeLogo(num));
-        assertEquals(expected, actual);
     }
 
     @Test
