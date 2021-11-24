@@ -18,9 +18,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 
 public class Controller extends HelloApplication{
@@ -474,5 +472,86 @@ public class Controller extends HelloApplication{
             }
         }
         return 1;
+    }
+
+    public static boolean isPathCorrect(String path) {
+        return path.endsWith(".txt");
+    }
+
+
+    public static HashSet<Integer> fillRange(int num){
+        HashSet <Integer> set = new HashSet<>();
+        for (int i = num; i >= 0; i--){
+            set.add(i + num);
+        }
+        return set;
+    }
+
+
+    public static HashSet <Integer> cutExtraNum(HashSet <Integer> set, int num){
+        int tmp;
+        for (int i = 2; i <= Math.sqrt(num * 2); i++){
+            Iterator<Integer> iterator = set.iterator();
+            while(iterator.hasNext()){
+                tmp = iterator.next();
+                if (tmp % i == 0 && tmp != 2 && tmp != 3)
+                    iterator.remove();
+            }
+        }
+        return set;
+    }
+
+
+    public static boolean checkLine(String str) {
+        String[] elems = str.split(" ");
+        boolean isCorrect = true;
+        try {
+            for (int i = 0; i < elems.length; i++){
+                Integer.parseInt(elems[i]);
+            }
+        } catch (NumberFormatException e){
+            isCorrect = false;
+        }
+        return isCorrect;
+
+    }
+
+    public static int[] splitStr(String str) {
+        String[] elems = str.split(" ");
+        int[] arr = new int[elems.length];
+        for (int i = 0; i < elems.length; i++)
+            arr[i] = Integer.parseInt(elems[i]);
+        return arr;
+    }
+
+    public static int[][] cutArr(int counter, int size, int[][] answer){
+        int[][] arr = new int[counter][size];
+        for (int i = 0; i < counter; i++)
+            arr[i] = answer[i];
+        return arr;
+    }
+
+    public static int[][] sortWSteps(int[] arr) {
+        int[][] answer = new int[arr.length][arr.length];
+        int counter = 1;
+        for (int k = 0; k < arr.length; k++){
+            answer[0][k] = arr[k];
+        }
+        for (int i = 1; i < arr.length; i++){
+            int current = arr[i];
+            int j = i;
+            while(j > 0 && arr[j - 1] > current){
+                arr[j] = arr[j - 1];
+                j--;
+            }
+            arr[j] = current;
+            if (j < i) {
+                for (int k = 0; k < arr.length; k++){
+                    answer[counter][k] = arr[k];
+                }
+                counter++;
+            }
+        }
+        return cutArr(counter, arr.length, answer);
     }
 }
