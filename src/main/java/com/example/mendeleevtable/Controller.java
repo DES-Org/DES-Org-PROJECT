@@ -359,13 +359,13 @@ public class Controller extends HelloApplication{
             }
             GAME_NUM++;
             if (GAME_HEALTH == 2){
-                control.firstHeart.setVisible(false);
+                if (!isTest) control.firstHeart.setVisible(false);
             }
             if (GAME_HEALTH == 1){
-                control.secondHeart.setVisible(false);
+                if (!isTest) control.secondHeart.setVisible(false);
             }
             if (GAME_HEALTH == 0){
-                control.thirdHeart.setVisible(false);
+                if (!isTest) control.thirdHeart.setVisible(false);
                 gameOver(event, isTest);
             }else if (GAME_NUM == choosingGameDifficulty(DEGREE_OF_DIFFICULTY) + 1){
                 gameWin(event, isTest);
