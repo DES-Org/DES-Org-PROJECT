@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -39,9 +38,6 @@ public class Controller extends HelloApplication{
 
     @FXML
     public Label infoL;
-
-    @FXML
-    void initialize() {
 
     }
 
@@ -88,7 +84,6 @@ public class Controller extends HelloApplication{
         control = loader.getController();
     }
 
-    public static boolean ELEMENT_INFO_WINDOW_OPEN = false;
     @FXML
     public void goToElemInfo(ActionEvent event) throws Exception  {
         String logo = "", name = "", mass = "", info = "", num = "";
@@ -137,8 +132,7 @@ public class Controller extends HelloApplication{
 
     @FXML
     public void backToMain1(ActionEvent event) {
-        gameEnd();
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+        gameEnd(event);
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
         String path = "view.fxml";
@@ -160,23 +154,28 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    public Label points, health, logoG, nameID;
+    public Label points, health, logoG, nameID, gameInfoLabel, totalPoints;
     public Button checkAnswerButton;
+    public Button easyModeButton;
+    public Button normalModeButton;
+    public Button hardModeButton;
     public TextField usersAnswer;
     public ImageView firstHeart;
     public ImageView secondHeart;
     public ImageView thirdHeart;
-
+    public static String DEGREE_OF_DIFFICULTY= "";
     public static byte GAME_NUM = 0;
     public static int GAME_POINTS = 0;
     public static int GAME_HEALTH = 3;
     public static int[] GAME_ARR = new int[118];
 
+    public static Random rnd = new Random();
+
     public static String takeRightAnswer(int number){
         String name = "";
         File file = new File(Objects.requireNonNull(Controller.class.getResource(number + ".txt")).getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
-            String tmp = br.readLine();
+            br.readLine();
             name = br.readLine();
         }catch (Exception ignored) {}
         return name;
@@ -195,14 +194,14 @@ public class Controller extends HelloApplication{
         control.logoG.setText(takeLogo(number));
     }
 
-    public static void RightAnswer() {
+    public static void rightAnswer() {
         GAME_POINTS++;
         control.points.setText(String.valueOf(GAME_POINTS));
         control.nameID.setTextFill(Color.GREEN);
         control.points.setTextFill(Color.GREEN);
     }
 
-    public static void WrongAnswer() {
+    public static void wrongAnswer() {
         GAME_HEALTH--;
         control.nameID.setTextFill(Color.RED);
         control.points.setTextFill(Color.RED);
@@ -217,49 +216,50 @@ public class Controller extends HelloApplication{
         control.usersAnswer.setText("");
     }
 
-    public static void gameEnd(){
+    public static void gameEnd(ActionEvent event){
+        ((Node)(event.getSource())).getScene().getWindow().hide();
         setGameElemsVisible(false);
         clearAll();
         control.checkAnswerButton.setText("Начать игру");
         control.health.setText("Здоровье");
-        IS_GAME_STARTED = false;
     }
 
-    public static void gameOver(){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Вы проиграли!");
-        alert.setHeaderText("У вас не осталось жизней!");
-        alert.setContentText("Вы набрали " + GAME_POINTS + " очков. В следующий раз будет больше!");
-        alert.showAndWait();
-        GAME_HEALTH = 3;
-        GAME_POINTS = 0;
-        GAME_NUM = 0;
-        gameEnd();
+    public static void gameOver(ActionEvent event) throws IOException{
+        int points = GAME_POINTS;
+        System.out.println(points);
+        gameEnd(event);
+        FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("Gameover.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Controller ctrl = fxmlLoader.getController();
+        scene.getRoot().setStyle("-fx-font-family: 'serif';");
+        Stage stage = new Stage();
+        stage.setTitle("Game over");
+        stage.setScene(scene);
+        stage.show();
+        ctrl.totalPoints.setText(String.valueOf(points));
     }
 
-    public static void gameWin() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Вы победили!");
-        alert.setHeaderText("Вы знаете все элементы!");
-        alert.setContentText("Поздравляем! Теперь вы самый крутой химик!");
-        alert.showAndWait();
-        GAME_HEALTH = 3;
-        GAME_POINTS = 0;
-        GAME_NUM = 0;
-        gameEnd();
+    public static void gameWin(ActionEvent event) throws IOException{
+        gameEnd(event);
+        FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("GameWin.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        scene.getRoot().setStyle("-fx-font-family: 'serif';");
+        Stage stage = new Stage();
+        stage.setTitle("Game Win");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
 
-    public static int[] shuffleArray() {   // тут перетасовачка массива, рабочая, можно поднастроить, если надо, сделаю
-        final int NUMBER_OF_ELEMENTS = 118;
-        int[] arr = new int[NUMBER_OF_ELEMENTS];
-        for (int i = 0; i < NUMBER_OF_ELEMENTS; i++) {
+    public static int[] shuffleArray(int numberOfElements) {
+        int[] arr = new int[numberOfElements];
+        for (int i = 0; i < numberOfElements; i++) {
             arr[i] = i + 1;
         }
-        Random rnd = new Random();
         int n, current;
-        for (int i = NUMBER_OF_ELEMENTS - 1; i >= 0; i--) {
+        for (int i = numberOfElements - 1; i >= 0; i--) {
             n = rnd.nextInt(i + 1);
-            current = arr[n];            //тут три строки - свап по сути, можно сделать отдельной функцией, если хочешь, хотя от этого покрытие вряд ли изменится, чисто лишних строки 2
+            current = arr[n];
             arr[n] = arr[i];
             arr[i] = current;
         }
@@ -295,11 +295,11 @@ public class Controller extends HelloApplication{
         return answer.toString();
     }
 
-    public static void checkAnswerFunc(String rightAnswer, String usersAnswer) {
+    public static void checkAnswerFunc(String rightAnswer, String usersAnswer, ActionEvent event) throws IOException {
         if ((rightAnswer.trim()).equalsIgnoreCase(usersAnswer.trim())){
-            RightAnswer();
+            rightAnswer();
         }else{
-            WrongAnswer();
+            wrongAnswer();
         }
         GAME_NUM++;
         if (GAME_HEALTH == 2){
@@ -310,17 +310,22 @@ public class Controller extends HelloApplication{
         }
         if (GAME_HEALTH == 0){
             control.thirdHeart.setVisible(false);
-            gameOver();
-        }
-        if (GAME_NUM == 119){
-            gameWin();
+            gameOver(event);
+        }else if (GAME_NUM == choosingGameDifficulty(DEGREE_OF_DIFFICULTY) + 1){
+            gameWin(event);
         } else {
-            generateInfo(GAME_ARR[GAME_NUM]);
+            generateInfo(GAME_ARR[GAME_NUM - 1]);
         }
         control.usersAnswer.setText("");
     }
 
     public static void setGameElemsVisible(boolean way){
+        control.gameInfoLabel.setVisible(!way);
+        control.easyModeButton.setVisible(!way);
+        control.normalModeButton.setVisible(!way);
+        control.hardModeButton.setVisible(!way);
+        control.checkAnswerButton.setVisible(way);
+        control.checkAnswerButton.setVisible(way);
         control.usersAnswer.setVisible(way);
         control.points.setVisible(way);
         control.nameID.setVisible(way);
@@ -330,31 +335,56 @@ public class Controller extends HelloApplication{
         control.thirdHeart.setVisible(way);
     }
 
-    public static boolean IS_GAME_STARTED = false;
+    public static int choosingGameDifficulty(String choice){
+        int numberOfElements = 0;
+        switch (choice) {
+            case ("Easy") -> numberOfElements = 30;
+            case ("Normal") -> numberOfElements = 60;
+            case ("Hard") -> numberOfElements = 118;
+        }
+        return numberOfElements;
+    }
 
     @FXML
-    public void checkAnswer() {
-        if (!IS_GAME_STARTED){
+    public void esMode(ActionEvent event) throws IOException {
+        DEGREE_OF_DIFFICULTY = "Easy";
+        checkAnswer(event);
+    }
+
+    @FXML
+    public void normMode(ActionEvent event) throws IOException {
+        DEGREE_OF_DIFFICULTY = "Normal";
+        checkAnswer(event);
+    }
+
+    @FXML
+    public void hardMode(ActionEvent event) throws IOException {
+        DEGREE_OF_DIFFICULTY = "Hard";
+        checkAnswer(event);
+    }
+
+
+    @FXML
+    public void checkAnswer(ActionEvent event) throws IOException {
+        if (GAME_NUM == 0){
+            control.nameID.setTextFill(Color.BLACK);
+            control.points.setTextFill(Color.BLACK);
             setGameElemsVisible(true);
             control.checkAnswerButton.setText("Проверить");
             clearAll();
-            GAME_ARR = shuffleArray();
-            generateInfo(GAME_ARR[0]);
-            IS_GAME_STARTED = true;
+            GAME_ARR = shuffleArray(choosingGameDifficulty(DEGREE_OF_DIFFICULTY));
+            GAME_NUM = 1;
+            generateInfo(GAME_ARR[GAME_NUM - 1]);
         }else{
-            if (GAME_NUM == 118) {
-                gameWin();
-            }
-            String rAnswer = makeStringLower(deleteAllSpaces(takeRightAnswer(GAME_ARR[GAME_NUM])));
+            String rAnswer = makeStringLower(deleteAllSpaces(takeRightAnswer(GAME_ARR[GAME_NUM - 1])));
             String uAnswer = makeStringLower(deleteAllSpaces(usersAnswer.getText()));
             if(usersAnswer.getText().equals("cheat::answer")){
                 control.usersAnswer.setText(rAnswer);
             }else if (usersAnswer.getText().equals("cheat::win")){
-                GAME_POINTS = 118;
-                gameWin();
+                gameWin(event);
                 control.usersAnswer.setText("");
             } else if (usersAnswer.getText().equals("cheat::gameover")){
-                gameOver();
+                gameOver(event);
                 control.usersAnswer.setText("");
             } else if (usersAnswer.getText().equals("cheat::pluspoints")){
                 GAME_POINTS += 5;
@@ -375,8 +405,7 @@ public class Controller extends HelloApplication{
                 control.usersAnswer.setText("");
 
             } else {
-                System.out.println(rAnswer + "    " + uAnswer);
-                checkAnswerFunc(rAnswer, uAnswer);
+                checkAnswerFunc(rAnswer, uAnswer, event);
             }
         }
     }
