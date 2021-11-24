@@ -1,49 +1,51 @@
-package com.example.mendeleevtable;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-public class ControllerTest {
 
     @Test
-    public void makeStringLower_Test() {
-        String given = "ПРИВЕт";
-        String expected = "привет";
-        assertEquals(expected, Controller.makeStringLower(given));
-    }
-
-    @Test
-    public void deleteAllSpaces_Test() {
-        String str = "пр  и вет     ";
-        String expected = "привет";
-        String actual = Controller.deleteAllSpaces(str);
+    public void toTableButton_Test(){
+        String expected = "table opened";
+        String actual = Controller.toTableButton(event, true);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void takeRightAnswer_Test() {
-        int num = 66;
-        String expected = "диспрозий";
-        String actual = Controller.deleteAllSpaces(Controller.makeStringLower(Controller.takeRightAnswer(num)));
+    public void toGameButton_Test() throws IOException {
+        String expected = "game frame opened";
+        String actual = Controller.toGameButton(event, true);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void takeLogo_Test() {
-        int num = 101;
-        String expected = "Md";
-        String actual = Controller.takeLogo(num);
+    public void toElemInfo_Test() throws Exception {
+        String expected = "info opened";
+        String actual = Controller.goToElemInfo(event, true);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void shuffleArray_Test() {
-        int arr[] = new int[118];
-        for (int i = 0; i < 118; i++)
-            arr[i] = i + 1;
-        int[] actual = Controller.shuffleArray(118);
-        assertFalse(arr.equals(actual));
+    public void backToMain_Test() {
+        String expected = "main opened";
+        String actual = Controller.backToMain(event, true);
+        assertEquals(expected, actual);
     }
-}
+
+
+    @Test
+    public void backToMain1_Test() {
+        String expected = "main opened";
+        String actual = Controller.backToMain1(event, true);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void backToTable_Test() {
+        String expected = "info hided";
+        String actual = Controller.backToTable(event, true);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void generateInfo_Test() {
+        String expected = "info have been generated";
+        String actual = Controller.generateInfo(1, true);
+        assertEquals(expected, actual);
+    }
+
