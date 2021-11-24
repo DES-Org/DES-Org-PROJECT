@@ -338,7 +338,7 @@ public class Controller extends HelloApplication{
     public static int choosingGameDifficulty(String choice){
         int numberOfElements = 0;
         switch (choice) {
-            case ("Easy") -> numberOfElements = 30;
+            case ("Easy") -> numberOfElements = 5;
             case ("Normal") -> numberOfElements = 60;
             case ("Hard") -> numberOfElements = 118;
         }
