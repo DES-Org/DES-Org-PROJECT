@@ -2,12 +2,15 @@ package com.example.mendeleevtable;
 
 import javafx.event.ActionEvent;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ControllerTest {
 
@@ -143,7 +146,7 @@ public class ControllerTest {
     public void setGameElemsVisible_Test()  {
         assertEquals("done", Controller.setGameElemsVisible(true, true));
     }
-    
+
     @Test
     public void choosingGameDifficulty_Test()  {
         int expected = 30;
@@ -151,7 +154,95 @@ public class ControllerTest {
         assertEquals(expected, actual);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "D:\\in.txt",
+            ".txt"
+    })
+    public void isPathCorrect_Test_True(String input) {
+        assertTrue(Controller.isPathCorrect(input));
+    }
 
 
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "",
+            "dawd",
+            "D:\\ou.ttx",
+    })
+    public void isPathCorrect_Test_False(String input) {
+        assertFalse(Controller.isPathCorrect(input));
+    }
 
+    @Test
+    public void fillRange_test() {
+        int n = 5;
+        Set<Integer> expectedResult = new HashSet<>();
+        expectedResult.add(5);
+        expectedResult.add(6);
+        expectedResult.add(7);
+        expectedResult.add(8);
+        expectedResult.add(9);
+        expectedResult.add(10);
+        Set<Integer> myResult = Controller.fillRange(n);
+        assertEquals(expectedResult, myResult);
+    }
+
+    @Test
+    public void cutExtraNum_Test() {
+        int n = 10;
+        HashSet<Integer> set = Controller.fillRange(n);
+        Set<Integer> expectedResult = new HashSet<>();
+        expectedResult.add(11);
+        expectedResult.add(13);
+        expectedResult.add(17);
+        expectedResult.add(19);
+        Set<Integer> myResult = Controller.cutExtraNum(set, n);
+        assertEquals(expectedResult, myResult);
+
+    }
+
+    @Test
+    public void testCheckLine() {
+        String str = "1 5 9 7 1 5 2 11";
+        boolean myResult = Controller.checkLine(str);
+        assertTrue(myResult);
+    }
+
+    @Test
+    public  void splitStr_Test() {
+        int[] expected = {1, 2, 3, 4, 5};
+        String str = "1 2 3 4 5";
+        int[] myResult = Controller.splitStr(str);
+        assertArrayEquals(expected, myResult);
+    }
+
+    @Test
+    public void sortWSteps_Test() {
+        int[][] expected = {
+                {1, 2, 5, 4, 3},
+                {1, 2, 4, 5, 3},
+                {1, 2, 3, 4, 5}
+        };
+        int[] arr = {1, 2, 5, 4, 3};
+        int[][] my = Controller.sortWSteps(arr);
+        assertArrayEquals(expected, my);
+    }
+
+    @Test
+    public void cutArr_Test(){
+        int[][] expected = {
+                {1, 2, 5, 4, 3},
+                {1, 2, 4, 5, 3},
+                {1, 2, 3, 4, 5}
+        };
+        int[][] my = {
+                {1, 2, 5, 4, 3},
+                {1, 2, 4, 5, 3},
+                {1, 2, 3, 4, 5},
+                {1, 2, 5, 4, 3},
+                {1, 2, 4, 5, 3}
+        };
+        int[][] actual = Controller.cutArr(3, 5, my);
+    }
 }
