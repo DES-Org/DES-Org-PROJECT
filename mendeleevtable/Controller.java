@@ -25,22 +25,19 @@ public class Controller extends HelloApplication{
 
 
     @FXML
-    private Label massL;
+    public Label massL;
 
     @FXML
-    private Label nameR;
+    public Label nameR;
 
     @FXML
-    private Label numL;
+    public Label numL;
 
     @FXML
     public Label logoL;
 
     @FXML
     public Label infoL;
-
-    @FXML
-    void initialize() {
 
     }
 
@@ -254,7 +251,7 @@ public class Controller extends HelloApplication{
         stage.show();
     }
 
-    private static int[] shuffleArray(int numberOfElements) {
+    public static int[] shuffleArray(int numberOfElements) {
         int[] arr = new int[numberOfElements];
         for (int i = 0; i < numberOfElements; i++) {
             arr[i] = i + 1;
@@ -338,7 +335,7 @@ public class Controller extends HelloApplication{
         control.thirdHeart.setVisible(way);
     }
 
-    private static int choosingGameDifficulty(String choice){
+    public static int choosingGameDifficulty(String choice){
         int numberOfElements = 0;
         switch (choice) {
             case ("Easy") -> numberOfElements = 30;
@@ -349,19 +346,19 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    protected void esMode(ActionEvent event) throws IOException {
+    public void esMode(ActionEvent event) throws IOException {
         DEGREE_OF_DIFFICULTY = "Easy";
         checkAnswer(event);
     }
 
     @FXML
-    protected void normMode(ActionEvent event) throws IOException {
+    public void normMode(ActionEvent event) throws IOException {
         DEGREE_OF_DIFFICULTY = "Normal";
         checkAnswer(event);
     }
 
     @FXML
-    protected void hardMode(ActionEvent event) throws IOException {
+    public void hardMode(ActionEvent event) throws IOException {
         DEGREE_OF_DIFFICULTY = "Hard";
         checkAnswer(event);
     }
