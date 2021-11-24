@@ -42,120 +42,135 @@ public class Controller extends HelloApplication{
     public Label infoL;
 
     @FXML
-    public void toTableButton(ActionEvent event)  {
-
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-        String path = "table.fxml";
-        try {
-            root = loader.load(getClass().getResourceAsStream(path));
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static String toTableButton(ActionEvent event, boolean isTest)  {
+        if (!isTest){
+            FXMLLoader loader = new FXMLLoader();
+            Parent root = null;
+            String path = "table.fxml";
+            try {
+                root = loader.load(Controller.class.getResourceAsStream(path));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Stage stage = new Stage();
+            stage.setTitle("Table");
+            stage.setResizable(false);
+            assert root != null;
+            stage.setScene(new Scene(root));
+            stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
+            stage.show();
+            ((Node)(event.getSource())).getScene().getWindow().hide();
         }
-        Stage stage = new Stage();
-        stage.setTitle("Table");
-        stage.setResizable(false);
-        assert root != null;
-        stage.setScene(new Scene(root));
-        stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
-        stage.show();
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+        return "table opened";
     }
 
     public static Controller control = new Controller();
 
     @FXML
-    public void toGameButton(ActionEvent event) throws IOException {
-        String logo = "", name = "";
-        File file = new File(Objects.requireNonNull(getClass().getResource("1.txt")).getFile());
-        try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
-            logo = br.readLine();
-            name = br.readLine();
-        }catch (Exception ignored) {}
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("game.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Игра");
-        stage.setResizable(false);
-        stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
-        Parent root = loader.load();
-        stage.setScene(new Scene(root));
-        stage.show();
-        System.out.println(logo);
-        System.out.println(name);
-        ((Node)(event.getSource())).getScene().getWindow().hide();
-        control = loader.getController();
-    }
-
-    @FXML
-    public void goToElemInfo(ActionEvent event) throws Exception  {
-        String logo = "", name = "", mass = "", info = "", num = "";
-        Button btn = (Button) event.getSource();
-        File file = new File(Objects.requireNonNull(getClass().getResource(btn.getId() + ".txt")).getFile());
-        try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
-            logo = br.readLine();
-            name = br.readLine();
-            mass = br.readLine();
-            info = br.readLine();
-            num = btn.getId();
-        }catch (Exception ignored) {}
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("info.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Element Info");
-        stage.setResizable(false);
-        stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
-        Parent root = loader.load();
-        Controller controller = loader.getController();
-        stage.setScene(new Scene(root));
-        stage.show();
-        controller.logoL.setText(logo);
-        controller.nameR.setText(name);
-        controller.massL.setText(mass);
-        controller.infoL.setText(info);
-        controller.numL.setText(num);
-    }
-
-    @FXML
-    public void backToMain(ActionEvent event) {
-        ((Node)(event.getSource())).getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-        String path = "view.fxml";
-        try {
-            root = loader.load(getClass().getResourceAsStream(path));
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static String toGameButton(ActionEvent event, boolean isTest) throws IOException {
+        if (!isTest) {
+            String logo = "", name = "";
+            File file = new File(Objects.requireNonNull(Controller.class.getResource("1.txt")).getFile());
+            try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
+                logo = br.readLine();
+                name = br.readLine();
+            }catch (Exception ignored) {}
+            FXMLLoader loader = new FXMLLoader(Controller.class.getResource("game.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Игра");
+            stage.setResizable(false);
+            stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
+            stage.show();
+            System.out.println(logo);
+            System.out.println(name);
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+            control = loader.getController();
         }
-        Stage stage = new Stage();
-        stage.setResizable(false);
-        stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
-        assert root != null;
-        stage.setScene(new Scene(root));
-        stage.show();
+        return "game frame opened";
     }
 
     @FXML
-    public void backToMain1(ActionEvent event) {
-        gameEnd(event);
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = null;
-        String path = "view.fxml";
-        try {
-            root = loader.load(getClass().getResourceAsStream(path));
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static String goToElemInfo(ActionEvent event, boolean isTest) throws Exception  {
+        if (!isTest) {
+            String logo = "", name = "", mass = "", info = "", num = "";
+            Button btn = (Button) event.getSource();
+            File file = new File(Objects.requireNonNull(Controller.class.getResource(btn.getId() + ".txt")).getFile());
+            try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
+                logo = br.readLine();
+                name = br.readLine();
+                mass = br.readLine();
+                info = br.readLine();
+                num = btn.getId();
+            }catch (Exception ignored) {}
+
+            FXMLLoader loader = new FXMLLoader(Controller.class.getResource("info.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Element Info");
+            stage.setResizable(false);
+            stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
+            Parent root = loader.load();
+            Controller controller = loader.getController();
+            stage.setScene(new Scene(root));
+            stage.show();
+            controller.logoL.setText(logo);
+            controller.nameR.setText(name);
+            controller.massL.setText(mass);
+            controller.infoL.setText(info);
+            controller.numL.setText(num);
         }
-        Stage stage = new Stage();
-        stage.setResizable(false);
-        stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
-        assert root != null;
-        stage.setScene(new Scene(root));
-        stage.show();
+        return "info opened";
     }
 
     @FXML
-    public void backToTable(ActionEvent event){
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+    public static String backToMain(ActionEvent event, boolean isTest) {
+        if (!isTest) {
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            Parent root = null;
+            String path = "view.fxml";
+            try {
+                root = loader.load(Controller.class.getResourceAsStream(path));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
+            assert root != null;
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        return "main opened";
+    }
+
+    @FXML
+    public static String backToMain1(ActionEvent event, boolean isTest) {
+        if (!isTest) {
+            gameEnd(event);
+            FXMLLoader loader = new FXMLLoader();
+            Parent root = null;
+            String path = "view.fxml";
+            try {
+                root = loader.load(Controller.class.getResourceAsStream(path));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
+            assert root != null;
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        return "main opened";
+    }
+
+    @FXML
+    public static String backToTable(ActionEvent event, boolean isTest){
+        if (!isTest) {((Node)(event.getSource())).getScene().getWindow().hide();}
+        return "info hided";
     }
 
     @FXML
@@ -196,8 +211,11 @@ public class Controller extends HelloApplication{
         return logo;
     }
 
-    public static void generateInfo(int number){
-        control.logoG.setText(takeLogo(number));
+    public static String generateInfo(int number, boolean isTest){
+        if (!isTest) {
+            control.logoG.setText(takeLogo(number));
+        }
+        return "info have been generated";
     }
 
     public static void rightAnswer() {
@@ -323,7 +341,7 @@ public class Controller extends HelloApplication{
         }else if (GAME_NUM == choosingGameDifficulty(DEGREE_OF_DIFFICULTY) + 1){
             gameWin(event);
         } else {
-            generateInfo(GAME_ARR[GAME_NUM - 1]);
+            generateInfo(GAME_ARR[GAME_NUM - 1], false);
         }
         control.usersAnswer.setText("");
     }
@@ -383,7 +401,7 @@ public class Controller extends HelloApplication{
             clearAll();
             GAME_ARR = shuffleArray(choosingGameDifficulty(DEGREE_OF_DIFFICULTY));
             GAME_NUM = 1;
-            generateInfo(GAME_ARR[GAME_NUM - 1]);
+            generateInfo(GAME_ARR[GAME_NUM - 1], false);
         }else{
             String rAnswer = makeStringLower(deleteAllSpaces(takeRightAnswer(GAME_ARR[GAME_NUM - 1])));
             String uAnswer = makeStringLower(deleteAllSpaces(usersAnswer.getText()));
