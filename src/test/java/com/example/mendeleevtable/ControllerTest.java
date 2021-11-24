@@ -10,14 +10,14 @@ public class ControllerTest {
     final String ELEMENT = "ВоДОрОд";
 
     @Test
-    void makeStringLower_Test() {
+    public void makeStringLower_Test() {
         String given = "ПРИВЕт";
         String expected = "привет";
         assertEquals(expected, Controller.makeStringLower(given));
     }
 
     @Test
-    void shuffleArray_Test() {
+    public void shuffleArray_Test() {
         final int numberOfElements = 1;
         int[] arr = new int[]{1};
         int[] shuffledArr = Controller.shuffleArray(numberOfElements);
@@ -25,7 +25,7 @@ public class ControllerTest {
     }
 
     @Test
-    void deleteAllSpaces_Test() {
+    public void deleteAllSpaces_Test() {
         String str = "пр  и вет     ";
         String expected = "привет";
         String actual = Controller.deleteAllSpaces(str);
