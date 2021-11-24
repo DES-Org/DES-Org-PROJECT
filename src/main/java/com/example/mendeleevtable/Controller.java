@@ -19,7 +19,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Objects;
-import java.util.Random;
 
 
 public class Controller extends HelloApplication{
