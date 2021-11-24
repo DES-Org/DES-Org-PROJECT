@@ -18,6 +18,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
@@ -148,7 +149,7 @@ public class Controller extends HelloApplication{
     @FXML
     public static String backToMain1(ActionEvent event, boolean isTest) {
         if (!isTest) {
-            gameEnd(event);
+            gameEnd(event, false);
             FXMLLoader loader = new FXMLLoader();
             Parent root = null;
             String path = "view.fxml";
@@ -218,63 +219,81 @@ public class Controller extends HelloApplication{
         return "info have been generated";
     }
 
-    public static void rightAnswer() {
-        GAME_POINTS++;
-        control.points.setText(String.valueOf(GAME_POINTS));
-        control.nameID.setTextFill(Color.GREEN);
-        control.points.setTextFill(Color.GREEN);
+    public static int rightAnswer(boolean isTest) {
+        if (!isTest) {
+            GAME_POINTS++;
+            control.points.setText(String.valueOf(GAME_POINTS));
+            control.nameID.setTextFill(Color.GREEN);
+            control.points.setTextFill(Color.GREEN);
+        }
+        return 1;
     }
 
-    public static void wrongAnswer() {
-        GAME_HEALTH--;
-        control.nameID.setTextFill(Color.RED);
-        control.points.setTextFill(Color.RED);
+    public static int wrongAnswer(boolean isTest) {
+        if (!isTest) {
+            GAME_HEALTH--;
+            control.nameID.setTextFill(Color.RED);
+            control.points.setTextFill(Color.RED);
+        }
+        return 1;
     }
 
-    public static void clearAll(){
-        GAME_HEALTH = 3;
-        GAME_POINTS = 0;
-        GAME_NUM = 0;
-        control.points.setText("0");
-        control.logoG.setText("");
-        control.usersAnswer.setText("");
+    public static int clearAll(boolean isTest){
+        if (!isTest) {
+            GAME_HEALTH = 3;
+            GAME_POINTS = 0;
+            GAME_NUM = 0;
+            control.points.setText("0");
+            control.logoG.setText("");
+            control.usersAnswer.setText("");
+        }
+        return 1;
     }
 
-    public static void gameEnd(ActionEvent event){
-        ((Node)(event.getSource())).getScene().getWindow().hide();
-        setGameElemsVisible(false);
-        clearAll();
-        control.checkAnswerButton.setText("Начать игру");
-        control.health.setText("Здоровье");
+    public static int gameEnd(ActionEvent event, boolean isTest){
+        if (!isTest) {
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+            setGameElemsVisible(false, false);
+            clearAll(false);
+            control.checkAnswerButton.setText("Начать игру");
+            control.health.setText("Здоровье");
+        }
+        return 1;
     }
 
-    public static void gameOver(ActionEvent event) throws IOException{
-        int points = GAME_POINTS;
-        System.out.println(points);
-        gameEnd(event);
-        FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("Gameover.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        Controller ctrl = fxmlLoader.getController();
-        scene.getRoot().setStyle("-fx-font-family: 'serif';");
-        Stage stage = new Stage();
-        stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
-        stage.setTitle("Game over");
-        stage.setScene(scene);
-        stage.show();
-        ctrl.totalPoints.setText(String.valueOf(points));
+    public static int gameOver(ActionEvent event, boolean isTest) throws IOException{
+        if (!isTest) {
+            int points = GAME_POINTS;
+            System.out.println(points);
+            gameEnd(event, false);
+            FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("Gameover.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Controller ctrl = fxmlLoader.getController();
+            scene.getRoot().setStyle("-fx-font-family: 'serif';");
+            Stage stage = new Stage();
+            stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
+            stage.setTitle("Game over");
+            stage.setScene(scene);
+            stage.show();
+            ctrl.totalPoints.setText(String.valueOf(points));
+        }
+        return 1;
     }
 
-    public static void gameWin(ActionEvent event) throws IOException{
-        gameEnd(event);
-        FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("GameWin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        scene.getRoot().setStyle("-fx-font-family: 'serif';");
-        Stage stage = new Stage();
-        stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
-        stage.setTitle("Game Win");
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
+    public static int gameWin(ActionEvent event, boolean isTest) throws IOException{
+        if (!isTest) {
+            gameEnd(event, false);
+            FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("GameWin.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            scene.getRoot().setStyle("-fx-font-family: 'serif';");
+            Stage stage = new Stage();
+            stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
+            stage.setTitle("Game Win");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }
+        return 1;
     }
 
     public static int[] shuffleArray(int numberOfElements) {
@@ -322,47 +341,53 @@ public class Controller extends HelloApplication{
         return answer.toString();
     }
 
-    public static void checkAnswerFunc(String rightAnswer, String usersAnswer, ActionEvent event) throws IOException {
-        if ((rightAnswer.trim()).equalsIgnoreCase(usersAnswer.trim())){
-            rightAnswer();
-        }else{
-            wrongAnswer();
+    public static int checkAnswerFunc(String rightAnswer, String usersAnswer, ActionEvent event, boolean isTest) throws IOException {
+        if (!isTest) {
+            if ((rightAnswer.trim()).equalsIgnoreCase(usersAnswer.trim())){
+                rightAnswer(false);
+            }else{
+                wrongAnswer(false);
+            }
+            GAME_NUM++;
+            if (GAME_HEALTH == 2){
+                control.firstHeart.setVisible(false);
+            }
+            if (GAME_HEALTH == 1){
+                control.secondHeart.setVisible(false);
+            }
+            if (GAME_HEALTH == 0){
+                control.thirdHeart.setVisible(false);
+                gameOver(event, false);
+            }else if (GAME_NUM == choosingGameDifficulty(DEGREE_OF_DIFFICULTY) + 1){
+                gameWin(event, false);
+            } else {
+                generateInfo(GAME_ARR[GAME_NUM - 1], false);
+            }
+            control.usersAnswer.setText("");
         }
-        GAME_NUM++;
-        if (GAME_HEALTH == 2){
-            control.firstHeart.setVisible(false);
-        }
-        if (GAME_HEALTH == 1){
-            control.secondHeart.setVisible(false);
-        }
-        if (GAME_HEALTH == 0){
-            control.thirdHeart.setVisible(false);
-            gameOver(event);
-        }else if (GAME_NUM == choosingGameDifficulty(DEGREE_OF_DIFFICULTY) + 1){
-            gameWin(event);
-        } else {
-            generateInfo(GAME_ARR[GAME_NUM - 1], false);
-        }
-        control.usersAnswer.setText("");
+        return 1;
     }
 
-    public static void setGameElemsVisible(boolean way){
-        control.gameInfoLabel.setVisible(!way);
-        control.easyModeButton.setVisible(!way);
-        control.normalModeButton.setVisible(!way);
-        control.hardModeButton.setVisible(!way);
-        control.checkAnswerButton.setVisible(way);
-        control.checkAnswerButton.setVisible(way);
-        control.usersAnswer.setVisible(way);
-        control.points.setVisible(way);
-        control.nameID.setVisible(way);
-        control.health.setVisible(way);
-        control.firstHeart.setVisible(way);
-        control.secondHeart.setVisible(way);
-        control.thirdHeart.setVisible(way);
+    public static String setGameElemsVisible(boolean way, boolean isTest){
+        if (!isTest) {
+            control.gameInfoLabel.setVisible(!way);
+            control.easyModeButton.setVisible(!way);
+            control.normalModeButton.setVisible(!way);
+            control.hardModeButton.setVisible(!way);
+            control.checkAnswerButton.setVisible(way);
+            control.checkAnswerButton.setVisible(way);
+            control.usersAnswer.setVisible(way);
+            control.points.setVisible(way);
+            control.nameID.setVisible(way);
+            control.health.setVisible(way);
+            control.firstHeart.setVisible(way);
+            control.secondHeart.setVisible(way);
+            control.thirdHeart.setVisible(way);
+        }
+        return "done";
     }
 
-    private static int choosingGameDifficulty(String choice){
+    public static int choosingGameDifficulty(String choice){
         int numberOfElements = 0;
         switch (choice) {
             case ("Easy") -> numberOfElements = 30;
@@ -373,67 +398,70 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    protected void esMode(ActionEvent event) throws IOException {
+    public void esMode(ActionEvent event, boolean isTest) throws IOException {
         DEGREE_OF_DIFFICULTY = "Easy";
-        checkAnswer(event);
+        checkAnswer(event, false);
     }
 
     @FXML
     protected void normMode(ActionEvent event) throws IOException {
         DEGREE_OF_DIFFICULTY = "Normal";
-        checkAnswer(event);
+        checkAnswer(event, false);
     }
 
     @FXML
     protected void hardMode(ActionEvent event) throws IOException {
         DEGREE_OF_DIFFICULTY = "Hard";
-        checkAnswer(event);
+        checkAnswer(event, false);
     }
 
 
     @FXML
-    public void checkAnswer(ActionEvent event) throws IOException {
-        if (GAME_NUM == 0){
-            control.nameID.setTextFill(Color.BLACK);
-            control.points.setTextFill(Color.BLACK);
-            setGameElemsVisible(true);
-            control.checkAnswerButton.setText("Проверить");
-            clearAll();
-            GAME_ARR = shuffleArray(choosingGameDifficulty(DEGREE_OF_DIFFICULTY));
-            GAME_NUM = 1;
-            generateInfo(GAME_ARR[GAME_NUM - 1], false);
-        }else{
-            String rAnswer = makeStringLower(deleteAllSpaces(takeRightAnswer(GAME_ARR[GAME_NUM - 1])));
-            String uAnswer = makeStringLower(deleteAllSpaces(usersAnswer.getText()));
-            if(usersAnswer.getText().equals("cheat::answer")){
-                control.usersAnswer.setText(rAnswer);
-            }else if (usersAnswer.getText().equals("cheat::win")){
-                gameWin(event);
-                control.usersAnswer.setText("");
-            } else if (usersAnswer.getText().equals("cheat::gameover")){
-                gameOver(event);
-                control.usersAnswer.setText("");
-            } else if (usersAnswer.getText().equals("cheat::pluspoints")){
-                GAME_POINTS += 5;
-                control.points.setText(String.valueOf(GAME_POINTS));
-                control.usersAnswer.setText("");
-            } else if (usersAnswer.getText().equals("cheat::heal")){
-                GAME_HEALTH = 3;
-                control.firstHeart.setVisible(true);
-                control.secondHeart.setVisible(true);
-                control.thirdHeart.setVisible(true);
-                control.usersAnswer.setText("");
-            }else if(usersAnswer.getText().equals("cheat::godmode")){
-                GAME_HEALTH = 5000;
-                control.firstHeart.setVisible(false);
-                control.secondHeart.setVisible(false);
-                control.thirdHeart.setVisible(false);
-                control.health.setText("Бессмертен");
-                control.usersAnswer.setText("");
+    public int checkAnswer(ActionEvent event, boolean isTest) throws IOException {
+        if (!isTest) {
+            if (GAME_NUM == 0){
+                control.nameID.setTextFill(Color.BLACK);
+                control.points.setTextFill(Color.BLACK);
+                setGameElemsVisible(true, false);
+                control.checkAnswerButton.setText("Проверить");
+                clearAll(false);
+                GAME_ARR = shuffleArray(choosingGameDifficulty(DEGREE_OF_DIFFICULTY));
+                GAME_NUM = 1;
+                generateInfo(GAME_ARR[GAME_NUM - 1], false);
+            }else{
+                String rAnswer = makeStringLower(deleteAllSpaces(takeRightAnswer(GAME_ARR[GAME_NUM - 1])));
+                String uAnswer = makeStringLower(deleteAllSpaces(usersAnswer.getText()));
+                if(usersAnswer.getText().equals("cheat::answer")){
+                    control.usersAnswer.setText(rAnswer);
+                }else if (usersAnswer.getText().equals("cheat::win")){
+                    gameWin(event, false);
+                    control.usersAnswer.setText("");
+                } else if (usersAnswer.getText().equals("cheat::gameover")){
+                    gameOver(event, false);
+                    control.usersAnswer.setText("");
+                } else if (usersAnswer.getText().equals("cheat::pluspoints")){
+                    GAME_POINTS += 5;
+                    control.points.setText(String.valueOf(GAME_POINTS));
+                    control.usersAnswer.setText("");
+                } else if (usersAnswer.getText().equals("cheat::heal")){
+                    GAME_HEALTH = 3;
+                    control.firstHeart.setVisible(true);
+                    control.secondHeart.setVisible(true);
+                    control.thirdHeart.setVisible(true);
+                    control.usersAnswer.setText("");
+                }else if(usersAnswer.getText().equals("cheat::godmode")){
+                    GAME_HEALTH = 5000;
+                    control.firstHeart.setVisible(false);
+                    control.secondHeart.setVisible(false);
+                    control.thirdHeart.setVisible(false);
+                    control.health.setText("Бессмертен");
+                    control.usersAnswer.setText("");
 
-            } else {
-                checkAnswerFunc(rAnswer, uAnswer, event);
+                } else {
+                    checkAnswerFunc(rAnswer, uAnswer, event, false);
+                }
             }
         }
+        return 1;
     }
 }
