@@ -20,6 +20,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+import static java.lang.System.err;
+import static java.lang.System.in;
+
 
 public class Controller extends HelloApplication{
 
@@ -553,5 +556,91 @@ public class Controller extends HelloApplication{
             }
         }
         return cutArr(counter, arr.length, answer);
+    }
+
+    public static int[][][] findAllCombinations(String str){
+        int[] arr;
+        arr = new int[str.length()];
+        for (int i = 0; i < arr.length; i++){
+            char tempC;
+            tempC = str.charAt(i);
+            String mystr;
+            mystr = String.valueOf(tempC);
+            int tmp;
+            tmp = Integer.parseInt(mystr);
+            if (tmp > 5)
+                tmp++;
+            if (tmp == 4)
+                tmp = 3;
+            if (tmp < 0)
+                tmp = 9;
+            arr[i] = tmp;
+        }
+        int[][][] ret;
+        int size;
+        size = str.length();
+        ret = new int[size][size][size];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                for (int k = 0; k < arr.length; k++) {
+                    ret[i][j][k] = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = arr[k];
+                    arr[k] = ret[i][j][k];
+                }
+            }
+        }
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = 1; j < arr.length; j++) {
+                for (int k = 1; k < arr.length; k++) {
+                    ret[i-1][j-1][k-1] = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = arr[k];
+                    arr[k] = ret[i-1][j-1][k-1];
+                }
+            }
+        }
+        int[] array = {1,2,3};
+        int left = 1;
+        int mid = 2;
+        int right = 3;
+        int lengthLeft = mid - left + 1;
+        int lengthRight = right - mid;
+
+        int leftArray[] = new int [lengthLeft];
+        int rightArray[] = new int [lengthRight];
+
+        for (int i = 0; i < lengthLeft; i++)
+            leftArray[i] = array[left+i];
+        for (int i = 0; i < lengthRight; i++)
+            rightArray[i] = array[mid+i];
+
+        int leftIndex = 0;
+        int rightIndex = 0;
+
+        for (int i = left; i < right + 1; i++) {
+            if (leftIndex < lengthLeft && rightIndex < lengthRight) {
+                if (leftArray[leftIndex] < rightArray[rightIndex]) {
+                    array[i] = leftArray[leftIndex];
+                    leftIndex++;
+                }
+                else {
+                    array[i] = rightArray[rightIndex];
+                    rightIndex++;
+                }
+            }
+            else if (leftIndex < lengthLeft) {
+
+                leftIndex++;
+            }
+            else if (rightIndex < lengthRight) {
+                array[i] = rightArray[rightIndex];
+                rightIndex++;
+            }
+        }
+        int[][][] ans;
+        ans = new int[1][1][1];
+        ans[0][0][0] = 1;
+        return ans;
     }
 }
