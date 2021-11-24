@@ -1,3 +1,57 @@
+package com.example.mendeleevtable;
+
+import javafx.event.ActionEvent;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+public class ControllerTest {
+
+    private final ActionEvent event = new ActionEvent();
+
+    @Test
+    public void makeStringLower_Test() {
+        String given = "ПРИВЕт";
+        String expected = "привет";
+        assertEquals(expected, Controller.makeStringLower(given));
+    }
+
+    @Test
+    public void deleteAllSpaces_Test() {
+        String str = "пр  и вет     ";
+        String expected = "привет";
+        String actual = Controller.deleteAllSpaces(str);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void takeRightAnswer_Test() {
+        int num = 66;
+        String expected = "диспрозий";
+        String actual = Controller.deleteAllSpaces(Controller.makeStringLower(Controller.takeRightAnswer(num)));
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void takeLogo_Test() {
+        int num = 101;
+        String expected = "Md";
+        String actual = Controller.takeLogo(num);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shuffleArray_Test() {
+        int[] arr = new int[118];
+        for (int i = 0; i < 118; i++)
+            arr[i] = i + 1;
+        int[] actual = Controller.shuffleArray(118);
+        assertFalse(Arrays.equals(arr, actual));
+    }
 
     @Test
     public void toTableButton_Test(){
@@ -49,3 +103,5 @@
         assertEquals(expected, actual);
     }
 
+
+}
