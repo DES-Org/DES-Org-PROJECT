@@ -26,7 +26,7 @@ public class ControllerTest {
     public void takeRightAnswer_Test() {
         int num = 66;
         String expected = "диспрозий";
-        String actual = expected + Controller.deleteAllSpaces(Controller.makeStringLower(Controller.takeRightAnswer(num)));
+        String actual = Controller.deleteAllSpaces(Controller.makeStringLower(Controller.takeRightAnswer(num)));
         assertEquals(expected, actual);
     }
 
@@ -34,7 +34,7 @@ public class ControllerTest {
     public void takeLogo_Test() {
         int num = 101;
         String expected = "Md";
-        String actual = expected + Controller.takeLogo(num);
+        String actual = Controller.takeLogo(num);
         assertEquals(expected, actual);
     }
 
