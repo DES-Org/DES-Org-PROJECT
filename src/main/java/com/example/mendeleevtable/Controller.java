@@ -97,14 +97,21 @@ public class Controller extends HelloApplication{
     public static String goToElemInfo(ActionEvent event, boolean isTest) throws Exception  {
 
         String logo = "", name = "", mass = "", info = "", num = "";
-        Button btn = (Button) event.getSource();
-        File file = new File(Objects.requireNonNull(Controller.class.getResource(btn.getId() + ".txt")).getFile());
+        int numeric;
+        if (!isTest) {
+            Button btn = (Button) event.getSource();
+            num = btn.getId();
+            numeric = Integer.parseInt(num);
+        } else {
+            numeric = 1;
+        }
+        File file = new File(Objects.requireNonNull(Controller.class.getResource(numeric + ".txt")).getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
             logo = br.readLine();
             name = br.readLine();
             mass = br.readLine();
             info = br.readLine();
-            num = btn.getId();
+
         }catch (Exception ignored) {}
 
         if (!isTest) {
