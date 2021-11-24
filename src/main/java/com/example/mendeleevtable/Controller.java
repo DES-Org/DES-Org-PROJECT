@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -17,37 +18,33 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.Random;
 
 
 public class Controller extends HelloApplication{
 
 
     @FXML
-    public Label massL;
+    private Label massL;
 
     @FXML
-    public Label nameR;
+    private Label nameR;
 
     @FXML
-    public Label numL;
+    private Label numL;
 
     @FXML
     public Label logoL;
 
     @FXML
     public Label infoL;
-    public Button backToMain;
-    public Label colorRight;
-    public Label colorWrong;
-    public TextField xxx;
 
     @FXML
     void initialize() {
+
     }
-
-
 
     @FXML
     public void toTableButton(ActionEvent event)  {
@@ -65,6 +62,7 @@ public class Controller extends HelloApplication{
         stage.setResizable(false);
         assert root != null;
         stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
         stage.show();
         ((Node)(event.getSource())).getScene().getWindow().hide();
     }
@@ -83,6 +81,7 @@ public class Controller extends HelloApplication{
         Stage stage = new Stage();
         stage.setTitle("Игра");
         stage.setResizable(false);
+        stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
         Parent root = loader.load();
         stage.setScene(new Scene(root));
         stage.show();
@@ -109,6 +108,7 @@ public class Controller extends HelloApplication{
         Stage stage = new Stage();
         stage.setTitle("Element Info");
         stage.setResizable(false);
+        stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
         Parent root = loader.load();
         Controller controller = loader.getController();
         stage.setScene(new Scene(root));
@@ -133,6 +133,7 @@ public class Controller extends HelloApplication{
         }
         Stage stage = new Stage();
         stage.setResizable(false);
+        stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
         assert root != null;
         stage.setScene(new Scene(root));
         stage.show();
@@ -151,6 +152,7 @@ public class Controller extends HelloApplication{
         }
         Stage stage = new Stage();
         stage.setResizable(false);
+        stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
         assert root != null;
         stage.setScene(new Scene(root));
         stage.show();
@@ -177,17 +179,15 @@ public class Controller extends HelloApplication{
     public static int GAME_HEALTH = 3;
     public static int[] GAME_ARR = new int[118];
 
-    public static SecureRandom rnd = new SecureRandom();
+    public static Random rnd = new Random();
 
     public static String takeRightAnswer(int number){
         String name = "";
-        String tmp = "";
         File file = new File(Objects.requireNonNull(Controller.class.getResource(number + ".txt")).getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
-            tmp = br.readLine();
+            br.readLine();
             name = br.readLine();
         }catch (Exception ignored) {}
-        System.out.println(tmp + " " + name);
         return name;
     }
 
@@ -243,6 +243,7 @@ public class Controller extends HelloApplication{
         Controller ctrl = fxmlLoader.getController();
         scene.getRoot().setStyle("-fx-font-family: 'serif';");
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
         stage.setTitle("Game over");
         stage.setScene(scene);
         stage.show();
@@ -255,13 +256,14 @@ public class Controller extends HelloApplication{
         Scene scene = new Scene(fxmlLoader.load());
         scene.getRoot().setStyle("-fx-font-family: 'serif';");
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("https://www.koob.ru/foto/author/8002.jpg"));
         stage.setTitle("Game Win");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
     }
 
-    public static int[] shuffleArray(int numberOfElements) {
+    private static int[] shuffleArray(int numberOfElements) {
         int[] arr = new int[numberOfElements];
         for (int i = 0; i < numberOfElements; i++) {
             arr[i] = i + 1;
@@ -273,6 +275,7 @@ public class Controller extends HelloApplication{
             arr[n] = arr[i];
             arr[i] = current;
         }
+        System.out.println(Arrays.toString(arr));
         return arr;
     }
 
@@ -345,7 +348,7 @@ public class Controller extends HelloApplication{
         control.thirdHeart.setVisible(way);
     }
 
-    public static int choosingGameDifficulty(String choice){
+    private static int choosingGameDifficulty(String choice){
         int numberOfElements = 0;
         switch (choice) {
             case ("Easy") -> numberOfElements = 30;
@@ -356,19 +359,19 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    public void esMode(ActionEvent event) throws IOException {
+    protected void esMode(ActionEvent event) throws IOException {
         DEGREE_OF_DIFFICULTY = "Easy";
         checkAnswer(event);
     }
 
     @FXML
-    public void normMode(ActionEvent event) throws IOException {
+    protected void normMode(ActionEvent event) throws IOException {
         DEGREE_OF_DIFFICULTY = "Normal";
         checkAnswer(event);
     }
 
     @FXML
-    public void hardMode(ActionEvent event) throws IOException {
+    protected void hardMode(ActionEvent event) throws IOException {
         DEGREE_OF_DIFFICULTY = "Hard";
         checkAnswer(event);
     }
