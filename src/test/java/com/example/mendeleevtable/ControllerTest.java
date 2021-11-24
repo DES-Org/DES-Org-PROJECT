@@ -6,9 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,7 +33,7 @@ public class ControllerTest {
     public void takeRightAnswer_Test() {
         int num = 66;
         String expected = "диспрозий";
-        String actual = Controller.deleteAllSpaces(Controller.makeStringLower(Controller.takeRightAnswer(num)));
+        String actual =  Controller.deleteAllSpaces(Controller.makeStringLower(Controller.takeRightAnswer(num)));
         assertEquals(expected, actual);
     }
 
@@ -43,7 +41,7 @@ public class ControllerTest {
     public void takeLogo_Test() {
         int num = 101;
         String expected = "Md";
-        String actual = Controller.takeLogo(num);
+        String actual =  Controller.takeLogo(num);
         assertEquals(expected, actual);
     }
 
@@ -177,28 +175,15 @@ public class ControllerTest {
     @Test
     public void fillRange_test() {
         int n = 5;
-        Set<Integer> expectedResult = null;
-        expectedResult.add(5);
-        expectedResult.add(6);
-        expectedResult.add(7);
-        expectedResult.add(8);
-        expectedResult.add(9);
-        expectedResult.add(10);
-        Set<Integer> myResult = Controller.fillRange(n);
-        assertEquals(expectedResult, myResult);
+        int myResult = Controller.fillRange(n);
+        assertEquals(1, myResult);
     }
 
     @Test
     public void cutExtraNum_Test() {
         int n = 10;
-        Set<Integer> set = Controller.fillRange(n);
-        Set<Integer> expectedResult = null;
-        expectedResult.add(11);
-        expectedResult.add(13);
-        expectedResult.add(17);
-        expectedResult.add(19);
-        Set<Integer> myResult = Controller.cutExtraNum(set, n);
-        assertEquals(expectedResult, myResult);
+        int myResult = Controller.cutExtraNum(5, n);
+        assertEquals(1,myResult);
 
     }
 
