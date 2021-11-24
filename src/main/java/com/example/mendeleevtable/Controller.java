@@ -18,7 +18,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
@@ -67,15 +66,17 @@ public class Controller extends HelloApplication{
 
     public static Controller control = new Controller();
 
+
     @FXML
     public static String toGameButton(ActionEvent event, boolean isTest) throws IOException {
+
+        String logo = "", name = "";
+        File file = new File(Objects.requireNonNull(Controller.class.getResource("1.txt")).getFile());
+        try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
+            logo = br.readLine();
+            name = br.readLine();
+        }catch (Exception ignored) {}
         if (!isTest) {
-            String logo = "", name = "";
-            File file = new File(Objects.requireNonNull(Controller.class.getResource("1.txt")).getFile());
-            try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
-                logo = br.readLine();
-                name = br.readLine();
-            }catch (Exception ignored) {}
             FXMLLoader loader = new FXMLLoader(Controller.class.getResource("game.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Игра");
@@ -84,28 +85,29 @@ public class Controller extends HelloApplication{
             Parent root = loader.load();
             stage.setScene(new Scene(root));
             stage.show();
-            System.out.println(logo);
-            System.out.println(name);
             ((Node)(event.getSource())).getScene().getWindow().hide();
             control = loader.getController();
         }
+        System.out.println(logo);
+        System.out.println(name);
         return "game frame opened";
     }
 
     @FXML
     public static String goToElemInfo(ActionEvent event, boolean isTest) throws Exception  {
-        if (!isTest) {
-            String logo = "", name = "", mass = "", info = "", num = "";
-            Button btn = (Button) event.getSource();
-            File file = new File(Objects.requireNonNull(Controller.class.getResource(btn.getId() + ".txt")).getFile());
-            try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
-                logo = br.readLine();
-                name = br.readLine();
-                mass = br.readLine();
-                info = br.readLine();
-                num = btn.getId();
-            }catch (Exception ignored) {}
 
+        String logo = "", name = "", mass = "", info = "", num = "";
+        Button btn = (Button) event.getSource();
+        File file = new File(Objects.requireNonNull(Controller.class.getResource(btn.getId() + ".txt")).getFile());
+        try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
+            logo = br.readLine();
+            name = br.readLine();
+            mass = br.readLine();
+            info = br.readLine();
+            num = btn.getId();
+        }catch (Exception ignored) {}
+
+        if (!isTest) {
             FXMLLoader loader = new FXMLLoader(Controller.class.getResource("info.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Element Info");
@@ -220,8 +222,8 @@ public class Controller extends HelloApplication{
     }
 
     public static int rightAnswer(boolean isTest) {
+        GAME_POINTS++;
         if (!isTest) {
-            GAME_POINTS++;
             control.points.setText(String.valueOf(GAME_POINTS));
             control.nameID.setTextFill(Color.GREEN);
             control.points.setTextFill(Color.GREEN);
@@ -230,8 +232,8 @@ public class Controller extends HelloApplication{
     }
 
     public static int wrongAnswer(boolean isTest) {
+        GAME_HEALTH--;
         if (!isTest) {
-            GAME_HEALTH--;
             control.nameID.setTextFill(Color.RED);
             control.points.setTextFill(Color.RED);
         }
@@ -239,10 +241,10 @@ public class Controller extends HelloApplication{
     }
 
     public static int clearAll(boolean isTest){
+        GAME_HEALTH = 3;
+        GAME_POINTS = 0;
+        GAME_NUM = 0;
         if (!isTest) {
-            GAME_HEALTH = 3;
-            GAME_POINTS = 0;
-            GAME_NUM = 0;
             control.points.setText("0");
             control.logoG.setText("");
             control.usersAnswer.setText("");
@@ -262,9 +264,9 @@ public class Controller extends HelloApplication{
     }
 
     public static int gameOver(ActionEvent event, boolean isTest) throws IOException{
+        int points = GAME_POINTS;
+        System.out.println(points);
         if (!isTest) {
-            int points = GAME_POINTS;
-            System.out.println(points);
             gameEnd(event, false);
             FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("Gameover.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
@@ -400,7 +402,7 @@ public class Controller extends HelloApplication{
     }
 
     @FXML
-    public void esMode(ActionEvent event, boolean isTest) throws IOException {
+    public void esMode(ActionEvent event) throws IOException {
         DEGREE_OF_DIFFICULTY = "Easy";
         checkAnswer(event, false);
     }
