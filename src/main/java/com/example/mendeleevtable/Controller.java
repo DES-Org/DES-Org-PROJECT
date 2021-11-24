@@ -493,7 +493,7 @@ public class Controller extends HelloApplication{
 
     public static HashSet <Integer> cutExtraNum(HashSet <Integer> set, int num){
         int tmp;
-        for (int i = 2; i <= Math.sqrt(num * 2); i++){
+        for (int i = 2; i <= 25; i++){
             Iterator<Integer> iterator = set.iterator();
             while(iterator.hasNext()){
                 tmp = iterator.next();
