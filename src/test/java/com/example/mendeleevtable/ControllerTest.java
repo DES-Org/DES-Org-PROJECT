@@ -103,5 +103,55 @@ public class ControllerTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void rightAnswer_Test(){
+        assertEquals(1, Controller.rightAnswer(true));
+    }
+
+    @Test
+    public void wrongAnswer_Test(){
+        assertEquals(1, Controller.wrongAnswer(true));
+    }
+
+    @Test
+    public void gameEnd_Test(){
+        assertEquals(1, Controller.gameEnd(event, true));
+    }
+
+    @Test
+    public void clearAll_Test(){
+        assertEquals(1, Controller.clearAll(true));
+    }
+
+    @Test
+    public void gameOver_Test() throws IOException {
+        assertEquals(1, Controller.gameOver(event, true));
+    }
+
+    @Test
+    public void gameWin_Test() throws IOException {
+        assertEquals(1, Controller.gameWin(event, true));
+    }
+
+
+    @Test
+    public void checkAnswerFunc_Test() throws IOException {
+        assertEquals(1, Controller.checkAnswerFunc("", "", event, true));
+    }
+
+    @Test
+    public void setGameElemsVisible_Test()  {
+        assertEquals("done", Controller.setGameElemsVisible(true, true));
+    }
+    
+    @Test
+    public void choosingGameDifficulty_Test()  {
+        int expected = 30;
+        int actual = Controller.choosingGameDifficulty("Easy");
+        assertEquals(expected, actual);
+    }
+
+
+
 
 }
