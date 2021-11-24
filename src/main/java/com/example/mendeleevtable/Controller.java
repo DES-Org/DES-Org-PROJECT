@@ -20,10 +20,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-import static java.lang.System.err;
-import static java.lang.System.in;
-
-
 public class Controller extends HelloApplication{
 
 
