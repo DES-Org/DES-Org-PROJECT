@@ -42,11 +42,6 @@ public class Controller extends HelloApplication{
     public Label infoL;
 
     @FXML
-    void initialize() {
-
-    }
-
-    @FXML
     public void toTableButton(ActionEvent event)  {
 
         FXMLLoader loader = new FXMLLoader();
@@ -185,7 +180,7 @@ public class Controller extends HelloApplication{
         String name = "";
         File file = new File(Objects.requireNonNull(Controller.class.getResource(number + ".txt")).getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
-            br.readLine();
+            name = br.readLine();
             name = br.readLine();
         }catch (Exception ignored) {}
         return name;
@@ -196,6 +191,7 @@ public class Controller extends HelloApplication{
         File file = new File(Objects.requireNonNull(Controller.class.getResource(number + ".txt")).getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
             logo = br.readLine();
+            return logo;
         }catch (Exception ignored) {}
         return logo;
     }
