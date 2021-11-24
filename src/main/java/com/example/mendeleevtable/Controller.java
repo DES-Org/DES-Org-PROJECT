@@ -342,11 +342,11 @@ public class Controller extends HelloApplication{
     }
 
     public static int checkAnswerFunc(String rightAnswer, String usersAnswer, ActionEvent event, boolean isTest) throws IOException {
-        if (!isTest) {
+
             if ((rightAnswer.trim()).equalsIgnoreCase(usersAnswer.trim())){
-                rightAnswer(false);
+                rightAnswer(isTest);
             }else{
-                wrongAnswer(false);
+                wrongAnswer(isTest);
             }
             GAME_NUM++;
             if (GAME_HEALTH == 2){
@@ -357,14 +357,16 @@ public class Controller extends HelloApplication{
             }
             if (GAME_HEALTH == 0){
                 control.thirdHeart.setVisible(false);
-                gameOver(event, false);
+                gameOver(event, isTest);
             }else if (GAME_NUM == choosingGameDifficulty(DEGREE_OF_DIFFICULTY) + 1){
-                gameWin(event, false);
+                gameWin(event, isTest);
             } else {
-                generateInfo(GAME_ARR[GAME_NUM - 1], false);
+                generateInfo(GAME_ARR[GAME_NUM - 1], isTest);
             }
+        if (!isTest) {
             control.usersAnswer.setText("");
         }
+
         return 1;
     }
 
