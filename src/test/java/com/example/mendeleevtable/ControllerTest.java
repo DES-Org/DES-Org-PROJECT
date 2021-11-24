@@ -177,7 +177,7 @@ public class ControllerTest {
     @Test
     public void fillRange_test() {
         int n = 5;
-        Set<Integer> expectedResult = new HashSet<>();
+        Set<Integer> expectedResult = null;
         expectedResult.add(5);
         expectedResult.add(6);
         expectedResult.add(7);
@@ -191,8 +191,8 @@ public class ControllerTest {
     @Test
     public void cutExtraNum_Test() {
         int n = 10;
-        HashSet<Integer> set = Controller.fillRange(n);
-        Set<Integer> expectedResult = new HashSet<>();
+        Set<Integer> set = Controller.fillRange(n);
+        Set<Integer> expectedResult = null;
         expectedResult.add(11);
         expectedResult.add(13);
         expectedResult.add(17);
@@ -245,8 +245,7 @@ public class ControllerTest {
         };
         int[][] actual = Controller.cutArr(3, 5, my);
     }
-    
-    
+
     @Test
     public void findAllCombinations_Test(){
         int[][][] expected = new int[1][1][1];
@@ -254,6 +253,4 @@ public class ControllerTest {
         int[][][] actual = Controller.findAllCombinations("12359");
         assertArrayEquals(expected, actual);
     }
-    
-    
 }
