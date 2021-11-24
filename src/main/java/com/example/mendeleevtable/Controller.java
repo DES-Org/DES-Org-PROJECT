@@ -490,7 +490,7 @@ public class Controller extends HelloApplication{
 
 
     public static Set<Integer> fillRange(int num){
-        Set <Integer> set = new HashSet<>();
+        Set <Integer> set = null;
         for (int i = num; i >= 0; i--){
             set.add(i + num);
         }
