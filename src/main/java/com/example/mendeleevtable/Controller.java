@@ -263,7 +263,7 @@ public class Controller extends HelloApplication{
         stage.show();
     }
 
-    private static int[] shuffleArray(int numberOfElements) {
+    public static int[] shuffleArray(int numberOfElements) {
         int[] arr = new int[numberOfElements];
         for (int i = 0; i < numberOfElements; i++) {
             arr[i] = i + 1;
