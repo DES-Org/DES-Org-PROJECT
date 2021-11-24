@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerTest {
 
-//    @Test
-//    void makeStringLower_Test() {
-//        String given = "ПРИВЕт";
-//        String expected = "привет";
-//        assertEquals(expected, Controller.makeStringLower(given));
-//    }
+    @Test
+    void makeStringLower_Test() {
+        String given = "ПРИВЕт";
+        String expected = "привет";
+        assertEquals(expected, Controller.makeStringLower(given));
+    }
 //
 //    @Test
 //    void takeRightAnswer_Test() {

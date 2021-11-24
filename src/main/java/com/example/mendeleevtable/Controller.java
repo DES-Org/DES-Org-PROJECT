@@ -17,6 +17,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.Objects;
 import java.util.Random;
 
@@ -177,15 +178,17 @@ public class Controller extends HelloApplication{
     public static int GAME_HEALTH = 3;
     public static int[] GAME_ARR = new int[118];
 
-    public static Random rnd = new Random();
+    public static SecureRandom rnd = new SecureRandom();
 
     public static String takeRightAnswer(int number){
         String name = "";
+        String tmp = "";
         File file = new File(Objects.requireNonNull(Controller.class.getResource(number + ".txt")).getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
-            br.readLine();
+            tmp = br.readLine();
             name = br.readLine();
         }catch (Exception ignored) {}
+        System.out.println(tmp + " " + name);
         return name;
     }
 
