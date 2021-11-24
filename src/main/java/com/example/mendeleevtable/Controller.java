@@ -489,26 +489,18 @@ public class Controller extends HelloApplication{
     }
 
 
-    public static Set<Integer> fillRange(int num){
+    public static int fillRange(int num){
         Set <Integer> set = null;
         for (int i = num; i >= 0; i--){
-            set.add(i + num);
+            num++;
         }
-        return set;
+        return 1;
     }
 
 
-    public static Set <Integer> cutExtraNum(Set <Integer> set, int num){
+    public static int cutExtraNum(int set, int num){
         int tmp;
-        for (int i = 2; i <= 5; i++){
-            Iterator<Integer> iterator = set.iterator();
-            while(iterator.hasNext()){
-                tmp = iterator.next();
-                if (tmp % i == 0 && tmp != 2 && tmp != 3)
-                    iterator.remove();
-            }
-        }
-        return set;
+        return 1;
     }
 
 
