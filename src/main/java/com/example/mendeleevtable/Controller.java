@@ -38,8 +38,16 @@ public class Controller extends HelloApplication{
 
     @FXML
     public Label infoL;
+    public Button backToMain;
+    public Label colorRight;
+    public Label colorWrong;
+    public TextField xxx;
 
+    @FXML
+    void initialize() {
     }
+
+
 
     @FXML
     public void toTableButton(ActionEvent event)  {
