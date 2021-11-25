@@ -17,6 +17,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
@@ -656,9 +657,78 @@ public class Controller extends HelloApplication{
                 rightIndex++;
             }
         }
+        String[] arrOfWords = findArrayOfWords("ЗА что??");
+        System.out.println(Arrays.toString(arrOfWords));
         int[][][] ans;
         ans = new int[1][1][1];
         ans[0][0][0] = 1;
         return ans;
+    }
+
+    public static String[] findArrayOfWords(String sentence){
+        String[] arrayOfWords = new String[100];
+        int wordsCounter = 0;
+        String word;
+        int index = sentence.indexOf(" ");
+        while (index != -1) {
+            word = sentence.substring(0, index);
+            if (!word.equals("")) {
+                arrayOfWords[wordsCounter] = word;
+                wordsCounter++;
+            }
+            sentence = sentence.substring(index + 1);
+            index = sentence.indexOf(" ");
+        }
+        if (!sentence.equals("")) {
+            arrayOfWords[wordsCounter] = sentence;
+            wordsCounter++;
+        }
+        int[] sort = {1, 2, 3};
+        int[][] arr = findStagesOfCocktailSort(sort);
+        System.out.println(Arrays.deepToString(arr));
+        String[] totalArrayOfWords = new String[wordsCounter];
+        System.arraycopy(arrayOfWords, 0, totalArrayOfWords, 0, wordsCounter);
+        return totalArrayOfWords;
+    }
+
+    public static int[][] findStagesOfCocktailSort(int[] array) {
+        int[][] answer = new int[array.length][array.length];
+        System.arraycopy(array, 0, answer[0], 0, array.length);
+        int counter = 0;
+        int leftBorder = 0, rightBorder = array.length - 1;
+        boolean wasThereSwap = true;
+        while ((leftBorder < rightBorder) && wasThereSwap) {
+            wasThereSwap = false;
+            for (int i = leftBorder; i < rightBorder; i++) {
+                if (array[i] > array[i + 1]) {
+                    array[i] ^= array[i + 1];
+                    array[i + 1] ^= array[i];
+                    array[i] ^= array[i + 1];
+                    wasThereSwap = true;
+                }
+            }
+            if(wasThereSwap){
+                System.arraycopy(array, 0, answer[counter + 1], 0, array.length);
+            }
+            counter++;
+            wasThereSwap = false;
+            rightBorder--;
+            for (int i = rightBorder; i > leftBorder; i--) {
+                if (array[i - 1] > array[i]) {
+                    array[i - 1] ^= array[i];
+                    array[i] ^= array[i - 1];
+                    array[i - 1] ^= array[i];
+                    wasThereSwap = true;
+                }
+            }
+            leftBorder++;
+            if(wasThereSwap){
+                System.arraycopy(array, 0, answer[counter + 1], 0, array.length);
+            }
+            counter++;
+        }
+        int[][] result = new int[counter][answer[0].length];
+        System.arraycopy(answer, 0, result, 0, counter);
+        return result;
     }
 }

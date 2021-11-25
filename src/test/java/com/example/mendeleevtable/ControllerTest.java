@@ -241,4 +241,20 @@ public class ControllerTest {
         int[][][] actual = Controller.findAllCombinations("12359");
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void findArrayOfWords_Test(){
+        String[] excepted = {"he","She"};
+        String[] actual = Controller.findArrayOfWords("he  She");
+        assertArrayEquals(excepted, actual);
+    }
+
+    @Test
+    public void findStagesOfCocktailSort_Test(){
+        int[] start = {5,1,3};
+        int[][] excepted = {{5, 1 ,3},{1,3,5}};
+        int[][] actual = Controller.findStagesOfCocktailSort(start);
+        assertArrayEquals(excepted, actual);
+    }
+
 }
