@@ -19,7 +19,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
-import java.util.Set;
 
 public class Controller extends HelloApplication{
 
@@ -67,7 +66,8 @@ public class Controller extends HelloApplication{
     @FXML
     public static String toGameButton(ActionEvent event, boolean isTest) throws IOException {
 
-        String logo = "1", name = "2";
+        String logo = "1";
+        String name = "2";
         File file = new File(Objects.requireNonNull(Controller.class.getResource("1.txt")).getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
             logo = br.readLine();
@@ -93,7 +93,11 @@ public class Controller extends HelloApplication{
     @FXML
     public static String goToElemInfo(ActionEvent event, boolean isTest) {
 
-        String logo = "1", name = "1", mass = "1", info = "1", num = "1";
+        String logo = "1";
+        String name = "1";
+        String mass = "1";
+        String info = "1";
+        String num = "1";
         int numeric;
         if (!isTest) {
             Button btn = (Button) event.getSource();
@@ -196,15 +200,15 @@ public class Controller extends HelloApplication{
     private Button easyModeButton;
     private Button normalModeButton;
     private Button hardModeButton;
-    private TextField usersAnswer;
+    private static TextField usersAnswer;
     private ImageView firstHeart;
     private ImageView secondHeart;
     private ImageView thirdHeart;
-    private static String DEGREE_OF_DIFFICULTY= "";
-    private static byte GAME_NUM = 0;
-    private static int GAME_POINTS = 0;
-    private static int GAME_HEALTH = 3;
-    private static int[] GAME_ARR = new int[118];
+    private static String degreeOfDifficulty = "";
+    private static byte gameNum = 0;
+    private static int gamePoints = 0;
+    private static int gameHealth = 3;
+    private static int[] gameArr = new int[118];
 
     private static final Random rnd = new Random();
 
@@ -222,11 +226,15 @@ public class Controller extends HelloApplication{
 
     public static String takeLogo(int number){
         String logo = "";
+        int num =0;
         File file = new File(Objects.requireNonNull(Controller.class.getResource(number + ".txt")).getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
             logo = br.readLine();
             return logo;
-        }catch (Exception ignored) {}
+        }catch (Exception ignored) {
+               num++;
+        }
+        System.out.println(num);
         return logo;
     }
 
@@ -238,9 +246,9 @@ public class Controller extends HelloApplication{
     }
 
     public static int rightAnswer(boolean isTest) {
-        GAME_POINTS++;
+        gamePoints++;
         if (!isTest) {
-            control.points.setText(String.valueOf(GAME_POINTS));
+            control.points.setText(String.valueOf(gamePoints));
             control.nameID.setTextFill(Color.GREEN);
             control.points.setTextFill(Color.GREEN);
         }
@@ -248,7 +256,7 @@ public class Controller extends HelloApplication{
     }
 
     public static int wrongAnswer(boolean isTest) {
-        GAME_HEALTH--;
+        gameHealth--;
         if (!isTest) {
             control.nameID.setTextFill(Color.RED);
             control.points.setTextFill(Color.RED);
@@ -257,9 +265,9 @@ public class Controller extends HelloApplication{
     }
 
     public static int clearAll(boolean isTest){
-        GAME_HEALTH = 3;
-        GAME_POINTS = 0;
-        GAME_NUM = 0;
+        gameHealth = 3;
+        gamePoints = 0;
+        gameNum = 0;
         if (!isTest) {
             control.points.setText("0");
             control.logoG.setText("");
@@ -280,7 +288,7 @@ public class Controller extends HelloApplication{
     }
 
     public static int gameOver(ActionEvent event, boolean isTest) throws IOException{
-        int points = GAME_POINTS;
+        int points = gamePoints;
         if (!isTest) {
             gameEnd(event, false);
             FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("Gameover.fxml"));
@@ -363,20 +371,20 @@ public class Controller extends HelloApplication{
             }else{
                 wrongAnswer(isTest);
             }
-            GAME_NUM++;
-            if (GAME_HEALTH == 2){
-                if (!isTest) control.firstHeart.setVisible(false);
+            gameNum++;
+            if (gameHealth == 2 && (!isTest)){
+                control.firstHeart.setVisible(false);
             }
-            if (GAME_HEALTH == 1){
-                if (!isTest) control.secondHeart.setVisible(false);
+            if (gameHealth == 1 && (!isTest)){
+                control.secondHeart.setVisible(false);
             }
-            if (GAME_HEALTH == 0){
+            if (gameHealth == 0){
                 if (!isTest) control.thirdHeart.setVisible(false);
                 gameOver(event, isTest);
-            }else if (GAME_NUM == choosingGameDifficulty(DEGREE_OF_DIFFICULTY) + 1){
+            }else if (gameNum == choosingGameDifficulty(degreeOfDifficulty) + 1){
                 gameWin(event, isTest);
             } else {
-                generateInfo(GAME_ARR[GAME_NUM - 1], isTest);
+                generateInfo(gameArr[gameNum - 1], isTest);
             }
         if (!isTest) {
             control.usersAnswer.setText("");
@@ -407,48 +415,54 @@ public class Controller extends HelloApplication{
     public static int choosingGameDifficulty(String choice){
         int numberOfElements;
         switch (choice) {
-            case ("Easy") -> numberOfElements = 30;
-            case ("Normal") -> numberOfElements = 60;
-            case ("Hard") -> numberOfElements = 118;
+            case ("Easy") -> {
+                numberOfElements = 30;
+            }
+            case ("Normal") -> {
+                numberOfElements = 60;
+            }
+            case ("Hard") -> {
+                numberOfElements = 118;
+            }
             default -> numberOfElements = 100;
         }
         return numberOfElements;
     }
 
     @FXML
-    public  void esMode(ActionEvent event) throws IOException {
-        DEGREE_OF_DIFFICULTY = "Easy";
+    public static void esMode(ActionEvent event) throws IOException {
+        degreeOfDifficulty = "Easy";
         int num = checkAnswer(event, false);
         System.out.println(num);
     }
 
     @FXML
-    protected void normMode(ActionEvent event) throws IOException {
-        DEGREE_OF_DIFFICULTY = "Normal";
+    protected static void normMode(ActionEvent event) throws IOException {
+        degreeOfDifficulty = "Normal";
         checkAnswer(event, false);
     }
 
     @FXML
-    protected void hardMode(ActionEvent event) throws IOException {
-        DEGREE_OF_DIFFICULTY = "Hard";
+    protected static void hardMode(ActionEvent event) throws IOException {
+        degreeOfDifficulty = "Hard";
         checkAnswer(event, false);
     }
 
 
     @FXML
-    public int checkAnswer(ActionEvent event, boolean isTest) throws IOException {
+    public static int checkAnswer(ActionEvent event, boolean isTest) throws IOException {
         if (!isTest) {
-            if (GAME_NUM == 0){
+            if (gameNum == 0){
                 control.nameID.setTextFill(Color.BLACK);
                 control.points.setTextFill(Color.BLACK);
                 setGameElemsVisible(true, false);
                 control.checkAnswerButton.setText("Проверить");
                 clearAll(false);
-                GAME_ARR = shuffleArray(choosingGameDifficulty(DEGREE_OF_DIFFICULTY));
-                GAME_NUM = 1;
-                generateInfo(GAME_ARR[GAME_NUM - 1], false);
+                gameArr = shuffleArray(choosingGameDifficulty(degreeOfDifficulty));
+                gameNum = 1;
+                generateInfo(gameArr[gameNum - 1], false);
             }else{
-                String rAnswer = makeStringLower(deleteAllSpaces(takeRightAnswer(GAME_ARR[GAME_NUM - 1])));
+                String rAnswer = makeStringLower(deleteAllSpaces(takeRightAnswer(gameArr[gameNum - 1])));
                 String uAnswer = makeStringLower(deleteAllSpaces(usersAnswer.getText()));
                 if(usersAnswer.getText().equals("cheat::answer")){
                     control.usersAnswer.setText(rAnswer);
@@ -459,17 +473,17 @@ public class Controller extends HelloApplication{
                     gameOver(event, false);
                     control.usersAnswer.setText("");
                 } else if (usersAnswer.getText().equals("cheat::pluspoints")){
-                    GAME_POINTS += 5;
-                    control.points.setText(String.valueOf(GAME_POINTS));
+                    gamePoints += 5;
+                    control.points.setText(String.valueOf(gamePoints));
                     control.usersAnswer.setText("");
                 } else if (usersAnswer.getText().equals("cheat::heal")){
-                    GAME_HEALTH = 3;
+                    gameHealth = 3;
                     control.firstHeart.setVisible(true);
                     control.secondHeart.setVisible(true);
                     control.thirdHeart.setVisible(true);
                     control.usersAnswer.setText("");
                 }else if(usersAnswer.getText().equals("cheat::godmode")){
-                    GAME_HEALTH = 5000;
+                    gameHealth = 5000;
                     control.firstHeart.setVisible(false);
                     control.secondHeart.setVisible(false);
                     control.thirdHeart.setVisible(false);
