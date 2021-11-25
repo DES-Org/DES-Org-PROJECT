@@ -17,6 +17,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.Objects;
 import java.util.Random;
 
@@ -210,7 +211,7 @@ public class Controller extends HelloApplication{
     private static int gameHealth = 3;
     private static int[] gameArr = new int[118];
 
-    private static final Random rnd = new Random();
+    private static final SecureRandom rnd = new SecureRandom();
 
     public static String takeRightAnswer(int number){
         String name = "";
@@ -415,15 +416,9 @@ public class Controller extends HelloApplication{
     public static int choosingGameDifficulty(String choice){
         int numberOfElements;
         switch (choice) {
-            case ("Easy") -> {
-                numberOfElements = 30;
-            }
-            case ("Normal") -> {
-                numberOfElements = 60;
-            }
-            case ("Hard") -> {
-                numberOfElements = 118;
-            }
+            case ("Easy") -> numberOfElements = 30;
+            case ("Normal") -> numberOfElements = 60;
+            case ("Hard") -> numberOfElements = 118;
             default -> numberOfElements = 100;
         }
         return numberOfElements;
@@ -545,17 +540,14 @@ public class Controller extends HelloApplication{
 
     public static int[][] cutArr(int counter, int size, int[][] answer){
         int[][] arr = new int[counter][size];
-        for (int i = 0; i < counter; i++)
-            arr[i] = answer[i];
+        System.arraycopy(answer, 0, arr, 0, counter);
         return arr;
     }
 
     public static int[][] sortWSteps(int[] arr) {
         int[][] answer = new int[arr.length][arr.length];
         int counter = 1;
-        for (int k = 0; k < arr.length; k++){
-            answer[0][k] = arr[k];
-        }
+        System.arraycopy(arr, 0, answer[0], 0, arr.length);
         for (int i = 1; i < arr.length; i++){
             int current = arr[i];
             int j = i;
@@ -565,9 +557,7 @@ public class Controller extends HelloApplication{
             }
             arr[j] = current;
             if (j < i) {
-                for (int k = 0; k < arr.length; k++){
-                    answer[counter][k] = arr[k];
-                }
+                System.arraycopy(arr, 0, answer[counter], 0, arr.length);
                 counter++;
             }
         }
@@ -628,10 +618,8 @@ public class Controller extends HelloApplication{
         int[] rightArray;
         rightArray = new int [lengthRight];
 
-        for (int i = 0; i < lengthLeft; i++)
-            leftArray[i] = array[left+i];
-        for (int i = 0; i < lengthRight; i++)
-            rightArray[i] = array[mid+i];
+        System.arraycopy(array, left, leftArray, 0, lengthLeft);
+        System.arraycopy(array, mid, rightArray, 0, lengthRight);
 
         int leftIndex = 0;
         int rightIndex = 0;
