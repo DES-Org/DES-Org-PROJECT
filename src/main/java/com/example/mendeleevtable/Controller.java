@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -18,7 +17,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.Objects;
+import java.util.Random;
+import java.util.Set;
 
 public class Controller extends HelloApplication{
 
@@ -66,14 +67,15 @@ public class Controller extends HelloApplication{
     @FXML
     public static String toGameButton(ActionEvent event, boolean isTest) throws IOException {
 
-        String logo = "1", name = "1";
+        String logo = "1", name = "2";
         File file = new File(Objects.requireNonNull(Controller.class.getResource("1.txt")).getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
             logo = br.readLine();
             name = br.readLine();
         }catch (Exception e){
-            System.out.println(e);
+            System.out.println("e");
         }
+        System.out.println(logo + " " + name);
         if (!isTest) {
             FXMLLoader loader = new FXMLLoader(Controller.class.getResource("game.fxml"));
             Stage stage = new Stage();
@@ -108,7 +110,7 @@ public class Controller extends HelloApplication{
             info = br.readLine();
 
         }catch (Exception e) {
-            System.out.println(e);
+            System.out.println("e");
         }
 
         if (!isTest) {
@@ -123,6 +125,7 @@ public class Controller extends HelloApplication{
                 e.printStackTrace();
             }
             Controller controller = loader.getController();
+            assert root != null;
             stage.setScene(new Scene(root));
             stage.show();
             controller.logoL.setText(logo);
@@ -212,7 +215,7 @@ public class Controller extends HelloApplication{
             name = br.readLine();
             name = br.readLine();
         }catch (Exception e) {
-            System.out.println(e);
+            System.out.println("e");
         }
         return name;
     }
@@ -415,7 +418,8 @@ public class Controller extends HelloApplication{
     @FXML
     public  void esMode(ActionEvent event) throws IOException {
         DEGREE_OF_DIFFICULTY = "Easy";
-        checkAnswer(event, false);
+        int num = checkAnswer(event, false);
+        System.out.println(num);
     }
 
     @FXML
@@ -486,16 +490,19 @@ public class Controller extends HelloApplication{
 
 
     public static int fillRange(int num){
-        Set <Integer> set = null;
+        int a = 0;
         for (int i = num; i >= 0; i--){
             num++;
+            a += num;
         }
+        System.out.println(a);
         return 1;
     }
 
 
     public static int cutExtraNum(int set, int num){
-        int tmp;
+        System.out.println(set + num);
+        System.out.println("Success");
         return 1;
     }
 
@@ -504,8 +511,8 @@ public class Controller extends HelloApplication{
         String[] elems = str.split(" ");
         boolean isCorrect = true;
         try {
-            for (int i = 0; i < elems.length; i++){
-                Integer.parseInt(elems[i]);
+            for (String elem : elems) {
+                Integer.parseInt(elem);
             }
         } catch (NumberFormatException e){
             isCorrect = false;

@@ -1,6 +1,7 @@
 package com.example.mendeleevtable;
 
 import javafx.event.ActionEvent;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -69,7 +70,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void toElemInfo_Test() throws Exception {
+    public void toElemInfo_Test() {
         String expected = "info opened";
         String actual = Controller.goToElemInfo(event, true);
         assertEquals(expected, actual);
@@ -216,11 +217,6 @@ public class ControllerTest {
 
     @Test
     public void cutArr_Test(){
-        int[][] expected = {
-                {1, 2, 5, 4, 3},
-                {1, 2, 4, 5, 3},
-                {1, 2, 3, 4, 5}
-        };
         int[][] my = {
                 {1, 2, 5, 4, 3},
                 {1, 2, 4, 5, 3},
@@ -228,7 +224,14 @@ public class ControllerTest {
                 {1, 2, 5, 4, 3},
                 {1, 2, 4, 5, 3}
         };
+        int[][] excepted = {
+                {1, 2, 5, 4, 3},
+                {1, 2, 4, 5, 3},
+                {1, 2, 3, 4, 5},
+
+        };
         int[][] actual = Controller.cutArr(3, 5, my);
+        Assertions.assertArrayEquals(actual, excepted);
     }
 
     @Test
